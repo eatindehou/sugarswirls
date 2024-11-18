@@ -1,0 +1,21 @@
+// Jade
+
+.accueil{
+
+  &__titre{
+    padding: 20px;
+  }
+  &__layout{
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+.liste{
+  padding: 2em;
+}
+
+main{
+  background-color: $background;
+}
