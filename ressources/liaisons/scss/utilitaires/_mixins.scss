@@ -67,5 +67,12 @@
     @include visuallyhidden;
 }
 
+@mixin block {
+    list-style-type: none;
+    padding: 1.5em;
+    margin: 1em;
+    border-radius: 20px;
+}
+
 
 

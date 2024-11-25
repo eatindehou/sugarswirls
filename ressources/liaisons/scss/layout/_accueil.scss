@@ -12,10 +12,45 @@
 
 }
 
-.liste{
+.intro{
+  text-align: center;
+  margin: 3em;
   padding: 2em;
+  background-color: $blanc;
+  border-radius: 30px;
+
+  p{
+    font-weight: bold;
+  }
+}
+
+.listes{
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.liste{
+@include block;
+width: 200px;
+}
+
+.item{
+  @include block;
+  width: 300px;
+  text-align: center;
+  margin: 1em auto;
+
+  &__titre{
+    background-color: $blanc;
+    padding: .5em;
+    border-radius: 12px;
+  }
 }
 
 main{
   background-color: $background;
 }
+
+

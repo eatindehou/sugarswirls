@@ -21,20 +21,53 @@ if($strCodeOperation == "suppression"){
 	$pdosResultat = $objPdo->query($strRequete);
 }
 
-	$strRequete = "SELECT id, nom, couleur_id FROM listes";
+	$strRequeteListe = "SELECT id, nom, couleur_id FROM listes";
 
-	$pdosResultat = $objPdo->prepare($strRequete);
-	$pdosResultat->execute();
+	$pdosResultatListe = $objPdo->prepare($strRequeteListe);
+	$pdosResultatListe->execute();
 
 	$arrListes=array();
-	$ligne=$pdosResultat->fetch();
-	for($cpt=0;$cpt<$pdosResultat->rowCount();$cpt++){
-		$arrListes[$cpt]['id']=$ligne['id'];
-		$arrListes[$cpt]['nom']=$ligne['nom'];
-		$arrListes[$cpt]['couleur_id']=$ligne['couleur_id'];
+	$ligne=$pdosResultatListe->fetchAll();
+	for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){
+		$arrListes[$cpt]['id']=$ligne[$cpt]['id'];
+		$arrListes[$cpt]['nom']=$ligne[$cpt]['nom'];
+		$arrListes[$cpt]['couleur_id']=$ligne[$cpt]['couleur_id'];
 	}
 
-	$pdosResultat->closeCursor();
+	$pdosResultatListe->closeCursor();
+
+
+	$strRequeteCouleur = "SELECT id, nom_fr, rgb FROM couleurs";
+
+	$pdosResultatListe = $objPdo->prepare($strRequeteCouleur);
+	$pdosResultatListe->execute();
+
+	$arrCouleurs=array();
+	$ligne=$pdosResultatListe->fetchAll();
+	for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){
+		$arrCouleurs[$cpt]['id']=$ligne[$cpt]['id'];
+		$arrCouleurs[$cpt]['nom_fr']=$ligne[$cpt]['nom_fr'];
+		$arrCouleurs[$cpt]['rgb']=$ligne[$cpt]['rgb'];
+	}
+
+	$pdosResultatListe->closeCursor();
+
+
+	$strRequeteItems = "SELECT id, nom, echeance FROM items ORDER BY echeance";
+
+	$pdosResultatListe = $objPdo->prepare($strRequeteItems);
+	$pdosResultatListe->execute();
+
+	$arrItems=array();
+	$ligne=$pdosResultatListe->fetchAll();
+	for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){
+		$arrItems[$cpt]['id']=$ligne[$cpt]['id'];
+		$arrItems[$cpt]['nom']=$ligne[$cpt]['nom'];
+		$arrItems[$cpt]['echeance']=$ligne[$cpt]['echeance'];
+	}
+
+	$pdosResultatListe->closeCursor();
+
 
 ?>
 
@@ -50,62 +83,85 @@ if($strCodeOperation == "suppression"){
 	<title>Un beau titre ici!</title>
 	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
 </head>
-
+<style>
+	.item,
+	.liste{
+		background-color: beige;
+	}
+</style>
 <body>
 
 	<?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
 
-	<main>
+	<main class="main">
 		<div id="contenu" class="conteneur">
-		<h2>Éléments à échéance</h2>
-
-			<h2>Mes listes</h2>
-
-			<form action="<?php echo $niveau ?>index.php" method="GET">
-			<section class="liste">
-			<?php
-			var_dump($arrListes);
-			for($cpt=0;$cpt<count($arrListes);$cpt++){?>
-
-				<?php echo $arrListes[$cpt]["nom"];?>
+			<br>
+			<aside class="intro">
+				<ul>
+					<li>
+						<img src="liaisons/svg/cloche.svg" alt="">
+						<p>3 items à échéance</p>
+					</li>
+					<li>
+						<img src="liaisons/svg/liste.svg" alt="">
+						<p><?php echo count($arrListes);?> listes</p>
+					</li>
+					<li>
+						<img src="liaisons/svg/drapeau.svg" alt="">
+						<p><?php echo count($arrCouleurs);?> thèmes</p>
+					</li>
+				</ul>
 				
-				<!-- <input type="checkbox" name = "id_listes[]" value ="<?php echo $arrListes[$cpt]["id"]; ?>"> -->
+				<label for="filtre">Filtrer par:</label>
+					<select name="filtre" id="filtre">
+					<option value="">Choisir un filtre</option>
+					<option value="date">Date</option>
+					<option value="theme">Thème</option>
+					</select>
+					<form id="form"> 
+  						<input type="search" id="query" name="search" placeholder="Rechercher...">
+  						<button>Rechercher</button>
+					</form>
+			</aside>
+		
 
-				<!-- <a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">Modifier</a><br><br>
-			<?php } ?> -->
+		<h2 class="accueil__titre">Éléments à échéance</h2>
+		<?php for($cpt=0;$cpt<count($arrItems);$cpt++){?>
+		<?php if($arrItems[$cpt]["echeance"] != NULL){?>
+			<li class="item">
+				<h3 class="item__titre"><?php echo $arrItems[$cpt]["nom"];?></h3>
+				<p><?php echo $arrItems[$cpt]["echeance"];?></p>
+				<a href=""><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a>
+				<a href="">Supprimer</a>
+			</li>
+		<?php } ?>
+		<?php } ?>
+		<h2 class="accueil__titre">Mes listes</h2>
 
-			<input type="submit" name="btn_suppression" value="Supprimer">
-			</form>
-				
-			</section>
+		<form action="<?php echo $niveau ?>index.php" method="GET">
+
+		<ul class="listes">
+
+		<?php for($cpt=0;$cpt<count($arrListes);$cpt++){?>
+			<li class="liste">
+			<h3><?php echo $arrListes[$cpt]["nom"];?></h3>
+			
+			
+			<input type="checkbox" name = "id_listes[]" value ="<?php echo $arrListes[$cpt]["id"]; ?>">
+
+			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">Modifier</a><br><br>
+			</li>
+		<?php } ?>
+		</ul>
+		<input type="submit" name="btn_suppression" value="Supprimer">
+		</form>
+			
 
 			<form action="<?php echo $niveau ?>listes/ajouter.php" method="GET">
 			<input type="submit" name="btn_nouveau" value="Nouveau">
 		</form>
 		</div>
-	
 
-
-
-
-		
-	
-
-		
-
-
-		
-
-   
-        
-     <!-- <a href="#" class="hyperlien">lien test!</a>
-	</main>
-	
-	<aside>
-            <h3>Barre latérale</h3>
-            <p>Lorem ipsum dolor nunc aut nunquam sit amet, consectetur adipiscing elit. Vivamus at est eros, vel fringilla urna. Pellentesque odio rhoncus</p>
-	</aside>
-	 -->
 	
 	<?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
 

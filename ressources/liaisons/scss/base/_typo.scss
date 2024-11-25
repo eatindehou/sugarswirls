@@ -54,6 +54,7 @@ h3,
 
 h1,
 .titreNiveau1 {
+  text-align: center;
   @include fontSize(28px);
   margin: 0;
   &--desktop {
@@ -75,10 +76,14 @@ h1,
 
 h2,
 .titreNiveau2{
+  text-align: center;
   @include fontSize(20px);
   text-transform: uppercase;
   &--desktop {
     @include fontSize(28px);
+  }
+  @media(min-width:$desktop){
+    text-align: left;
   }
 }
 
