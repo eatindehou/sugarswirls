@@ -118,9 +118,9 @@ if($strCodeOperation == "suppression"){
 					<option value="date">Date</option>
 					<option value="theme">Thème</option>
 					</select>
-					<form id="form"> 
+					<form class="recherche" id="form"> 
   						<input type="search" id="query" name="search" placeholder="Rechercher...">
-  						<button>Rechercher</button>
+  						<button><img src="liaisons/svg/search.svg" alt=""></button>
 					</form>
 			</aside>
 		
@@ -132,7 +132,7 @@ if($strCodeOperation == "suppression"){
 				<h3 class="item__titre"><?php echo $arrItems[$cpt]["nom"];?></h3>
 				<p><?php echo $arrItems[$cpt]["echeance"];?></p>
 				<a href=""><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a>
-				<a href="">Supprimer</a>
+				<a href=""><img src="<?php echo $niveau;?>liaisons/svg/poubelle.svg" alt=""></a>
 			</li>
 		<?php } ?>
 		<?php } ?>
@@ -149,7 +149,7 @@ if($strCodeOperation == "suppression"){
 			
 			<input type="checkbox" name = "id_listes[]" value ="<?php echo $arrListes[$cpt]["id"]; ?>">
 
-			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">Modifier</a><br><br>
+			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>
 			</li>
 		<?php } ?>
 		</ul>
