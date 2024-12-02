@@ -11,12 +11,13 @@
   @include boutonCommun;
   background-color: $interactivite;
   color: $noir;
+  border: none;
   &:after {
     //content: "»";
     margin-left: 0.4em;
   }
   &:hover {
-    // background-color: transparentize($vertLime, 0.25);
+    background-color: #FF9603;
   }
   &:active {
     // background-color: transparentize($vertLime, 0.5);
