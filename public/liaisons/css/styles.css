@@ -564,10 +564,10 @@ h3--desktop,
   text-decoration: none;
 }
 .hyperlien:visited {
-  color: rgb(33.5753424658, 106.0273972603, 159.9246575342);
+  color: #226aa0;
 }
 .hyperlien:hover {
-  color: rgb(20.301369863, 64.1095890411, 96.698630137);
+  color: #144061;
   text-decoration: underline;
 }
 .hyperlien:active {
