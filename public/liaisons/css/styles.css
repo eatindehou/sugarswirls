@@ -663,6 +663,11 @@ h3--desktop,
 }
 .intro p {
   font-weight: bold;
+  padding-left: 0.5em;
+}
+.intro li {
+  display: flex;
+  flex-direction: row;
 }
 
 .listes {
@@ -697,6 +702,22 @@ h3--desktop,
 
 main {
   background-color: rgba(248, 180, 84, 0.6);
+}
+
+.recherche {
+  margin-top: 1em;
+  background-color: none;
+  border: solid 2px #F8B454;
+  border-radius: 12px;
+  max-width: 250px;
+}
+.recherche input {
+  border: none;
+}
+.recherche button {
+  border: none;
+  background-color: #FFF;
+  margin-left: 1em;
 }
 
 .entete {

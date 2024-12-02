@@ -21,6 +21,12 @@
 
   p{
     font-weight: bold;
+    padding-left: .5em;
+  }
+
+  li{
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -51,6 +57,25 @@ width: 200px;
 
 main{
   background-color: $background;
+}
+
+.recherche{
+  margin-top: 1em;
+  background-color: none;
+  border: solid 2px $interactivite;
+  border-radius: 12px;
+  max-width: 250px;
+  
+
+  input{
+    border: none;
+  }
+
+  button{
+    border: none;
+    background-color: $blanc;
+    margin-left: 1em;
+  }
 }
 
 
