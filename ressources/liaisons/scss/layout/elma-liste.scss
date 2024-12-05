@@ -1,0 +1,95 @@
+/**
+* @author Elma Atindehou - 2233755@csfoy.ca
+*/
+
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - ITEMS DE LA LISTE
+ * ----------------------------
+ * ENTETE 
+ * TEXTE DE GRANDE TAILLE *** PAGE DES TYPOS
+ * UL
+ * LI
+ * LIENS *** PAGE DES LIENS
+ * SECTION LISTES
+ * H1 *** PAGE DES TYPOS
+ * ARRIERE PLAN
+ * LISTES
+ * TEXTE DE TAILLE MOYENNE *** PAGE DES TYPOS
+ * UL
+ * LI
+ * PARAGRAPHE
+ * TEXTE DE PETITE TAILLE *** PAGE DES TYPOS
+ * LIENS *** PAGE DES LIENS
+ * PIED DE PAGE 
+
+
+
+
+/*** ENTETE ****/
+body{
+    background-color: rgba(248, 180, 84, 0.4);
+}
+// TEXTE DE GRANDE TAILLE *** PAGE DES TYPOS
+// UL
+.menuListe__listes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+// LI
+.menuListe__items{
+    list-style: none;
+    padding: 1rem;
+    width: calc(100%/3);
+
+}
+// LIENS *** PAGE DES LIENS
+.menuListe__lien{
+    // width: cal(100%/3) ;
+    width: 100%;
+    text-decoration: none;
+    border-left: 1rem solid black;
+}
+
+
+
+
+/*** SECTION LISTES ****/
+
+// H1 *** PAGE DES TYPOS
+
+// ARRIERE PLAN
+.ItemsDeLaListe{
+    padding:1rem;
+    background-color: rgba(255, 122, 197, 0.5);
+    border-radius:2rem;
+}
+.mainListe{
+    margin:2rem auto;
+    width: 90%;
+    border-radius:2rem;
+}
+
+/*** LISTES ****/
+
+// TEXTE DE TAILLE MOYENNE
+// UL
+.itemsDeLaListe__item{
+    background-color: white;
+    padding:1rem;
+    margin-bottom: 1rem;
+    border-top:.6rem solid black;
+    border-radius:2rem;
+}
+// LI
+.ItemsDeLaListe__liste{
+    list-style: none;
+}
+.itemsDeLaListe__item li {
+    list-style: none;
+}
+// PARAGRAPHE
+// TEXTE DE PETITE TAILLE *** PAGE DES TYPOS
+// LIENS *** PAGE DES LIENS
+/*** PIED DE PAGE ****/

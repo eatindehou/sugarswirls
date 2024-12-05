@@ -459,12 +459,45 @@ th {
 /****** BASE ********************************/
 /** Typographie **/
 /**
-* @author Prenom Nom courriel
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 /******** Typographie *********/
 @font-face {
-  font-family: Roboto, sans-serif;
-  src: url("../fonts/Roboto-Regular.ttc") format("truetype");
+  font-family: PlayfairBLack;
+  src: url("../fonts/playfair_144pt-black.ttf") format("truetype");
+}
+@font-face {
+  font-family: PlayfairExtraBold;
+  src: url("../fonts/playfair_144pt-extrabold.ttf") format("truetype");
+}
+@font-face {
+  font-family: PlayfairBold;
+  src: url("../fonts/playfair_144pt-bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: PlayfairSemiBold;
+  src: url("../fonts/playfair_144pt-semibold.ttf") format("truetype");
+}
+@font-face {
+  font-family: ArimaBold;
+  src: url("../fonts/arima-bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: ArimaSemiBold;
+  src: url("../fonts/arima-semibold.ttf") format("truetype");
+}
+@font-face {
+  font-family: ArimaMedium;
+  src: url("../fonts/arima-medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: ArimaRegular;
+  src: url("../fonts/arima-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: ArimaLight;
+  src: url("../fonts/arima-light.ttf") format("truetype");
 }
 /**** Typographie responsive ****/
 html {
@@ -472,20 +505,34 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: ArimaMedium;
   font-size: 16px;
   font-size: 1.6rem;
   /* 16px pour toutes les largeurs d'écran */
   line-height: 1.375; /* facteur multiplicateur de la taille de la police 1.375x16=22 */
 }
-h1,
-.titreNiveau1,
-h2,
-.titreNiveau2,
-h3,
+.titreNiveau1 {
+  font-family: PlayfairBLack;
+}
+
+.titreNiveau2 {
+  font-family: PlayfairBold;
+}
+
 .titreNiveau3 {
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
+  font-family: PlayfairExtraBold;
+}
+
+.textePetiteTaille {
+  font-family: ArimaRegular;
+}
+
+.textegGrandeTaille {
+  font-family: ArimaBold;
+}
+
+.texteMoyenneTaille {
+  font-family: ArimaSemiBold;
 }
 
 h1,
@@ -544,7 +591,7 @@ h3--desktop,
 }
 
 .texte {
-  font-family: Arial, sans-serif;
+  font-family: ArimaMedium;
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.375;
@@ -701,7 +748,7 @@ h3--desktop,
 }
 
 main {
-  background-color: rgba(248, 180, 84, 0.6);
+  background-color: rgba(248, 180, 84, 0.4);
 }
 
 .recherche {
@@ -732,5 +779,86 @@ main {
 .piedDePage {
   background-color: #FFF;
 }
+/**
+* @author Elma Atindehou - 2233755@csfoy.ca
+*/
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - ITEMS DE LA LISTE
+ * ----------------------------
+ * ENTETE 
+ * TEXTE DE GRANDE TAILLE *** PAGE DES TYPOS
+ * UL
+ * LI
+ * LIENS *** PAGE DES LIENS
+ * SECTION LISTES
+ * H1 *** PAGE DES TYPOS
+ * ARRIERE PLAN
+ * LISTES
+ * TEXTE DE TAILLE MOYENNE *** PAGE DES TYPOS
+ * UL
+ * LI
+ * PARAGRAPHE
+ * TEXTE DE PETITE TAILLE *** PAGE DES TYPOS
+ * LIENS *** PAGE DES LIENS
+ * PIED DE PAGE 
+
+
+
+
+/*** ENTETE ****/
+body {
+  background-color: rgba(248, 180, 84, 0.4);
+}
+
+.menuListe__listes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.menuListe__items {
+  list-style: none;
+  padding: 1rem;
+  width: 33.3333333333%;
+}
+
+.menuListe__lien {
+  width: 100%;
+  text-decoration: none;
+  border-left: 1rem solid black;
+}
+
+/*** SECTION LISTES ****/
+.ItemsDeLaListe {
+  padding: 1rem;
+  background-color: rgba(255, 122, 197, 0.5);
+  border-radius: 2rem;
+}
+
+.mainListe {
+  margin: 2rem auto;
+  width: 90%;
+  border-radius: 2rem;
+}
+
+/*** LISTES ****/
+.itemsDeLaListe__item {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-top: 0.6rem solid black;
+  border-radius: 2rem;
+}
+
+.ItemsDeLaListe__liste {
+  list-style: none;
+}
+
+.itemsDeLaListe__item li {
+  list-style: none;
+}
+
+/*** PIED DE PAGE ****/
 
 /*# sourceMappingURL=styles.css.map */

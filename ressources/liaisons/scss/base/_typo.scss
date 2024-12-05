@@ -1,5 +1,6 @@
 /**
-* @author Prenom Nom courriel
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 
 /******** Typographie *********/
@@ -19,13 +20,57 @@
 
 
 @font-face {
-  font-family: Roboto, sans-serif;
-  src: 	url('../fonts/Roboto-Regular.ttc') format('truetype');
+  font-family: PlayfairBLack;
+  src: 	url('../fonts/playfair_144pt-black.ttf') format('truetype');
 }
 
-$fontePrimaire : Roboto, sans-serif;
-$fonteSecondaire : Arial, sans-serif;
+@font-face {
+  font-family: PlayfairExtraBold;
+  src: 	url('../fonts/playfair_144pt-extrabold.ttf') format('truetype');
+}
+@font-face {
+  font-family: PlayfairBold;
+  src: 	url('../fonts/playfair_144pt-bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: PlayfairSemiBold;
+  src: 	url('../fonts/playfair_144pt-semibold.ttf') format('truetype');
+}
 
+@font-face {
+  font-family: ArimaBold;
+  src: 	url('../fonts/arima-bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: ArimaSemiBold;
+  src: 	url('../fonts/arima-semibold.ttf') format('truetype');
+}
+@font-face {
+  font-family: ArimaMedium;
+  src: 	url('../fonts/arima-medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: ArimaRegular;
+  src: 	url('../fonts/arima-regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: ArimaLight;
+  src: 	url('../fonts/arima-light.ttf') format('truetype');
+}
+
+
+// TITRES
+$titreH1 : PlayfairBLack;
+$titreH2 : PlayfairBold;
+$titreH3 : PlayfairExtraBold;
+// Texte
+$texteGrandeTaille: ArimaBold;
+$texteMoyenneTaille: ArimaSemiBold;
+$texteCourant : ArimaMedium;
+$textePetiteTaille: ArimaRegular;
+$texteTresPetiteTaille: ArimaLight;
+// Liens
+$liens : PlayfairSemiBold;
 
 /**** Typographie responsive ****/
 
@@ -34,7 +79,7 @@ html {
 }
 
 body {
-  font-family: $fonteSecondaire;
+  font-family: $texteCourant;
   @include fontSize(16px); /* 16px pour toutes les largeurs d'écran */
   line-height: 1.375; /* facteur multiplicateur de la taille de la police 1.375x16=22 */
   @media (min-width: 601px) {
@@ -42,16 +87,25 @@ body {
   }
 }
 
-h1,
-.titreNiveau1,
-h2,
-.titreNiveau2,
-h3,
-.titreNiveau3 {
-  font-family: $fontePrimaire;
-  font-weight: 500;
-}
 
+.titreNiveau1 {
+  font-family: $titreH1;
+}
+.titreNiveau2 {
+  font-family: $titreH2;
+}
+.titreNiveau3 {
+  font-family: $titreH3;
+}
+.textePetiteTaille{
+  font-family: $textePetiteTaille;
+}
+.textegGrandeTaille{
+  font-family: $texteGrandeTaille;
+}
+.texteMoyenneTaille{
+  font-family: $texteMoyenneTaille;
+}
 h1,
 .titreNiveau1 {
   text-align: center;
@@ -96,7 +150,7 @@ h3,
 }
 
 .texte {
-  font-family: $fonteSecondaire;
+  font-family: $texteCourant;
   @include fontSize(16px);
   line-height: 1.375;
   &--desktop {
