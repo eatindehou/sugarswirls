@@ -647,6 +647,7 @@ h3--desktop,
   background-color: #F1255F;
   color: #000;
   border: none;
+  width: 60%;
 }
 .bouton__annuler:after {
   margin-left: 0.4em;
@@ -654,6 +655,12 @@ h3--desktop,
 .bouton__annuler:hover {
   background-color: #A60A36;
 }
+.annuler {
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+
 /** Grille 12 colones **/
 /*** Classe conteneur pour le centrage et l'affichage de la grille en arrière-plan ***/
 @media (min-width: 600px) {
@@ -828,10 +835,14 @@ main {
 }
 
 .couleurs {
-  padding: 2em;
+  padding: 2em 2em 2em 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.couleurs__nom {
+  padding-left: 2.7em;
+  padding-right: 0.5em;
 }
 
 .entete {

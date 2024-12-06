@@ -175,10 +175,9 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 			<li class="liste" style="border-left: 5px solid <?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;">
 			<h3 class="liste__titre" style="background-color:<?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;"><?php echo $arrListes[$cpt]["nom"];?></h3>
 			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>
-			<form class="bouton__annuler">
+			<form method="GET">
 			<input type="hidden" name="id_liste" value="<?php echo $arrListes[$cpt]["id"]; ?>">
-			<input type="submit" class="annuler" name="btn_suppression" value="Supprimer"><img src="<?php echo $niveau;?>liaisons/svg/cancel.svg" alt="">
-			<?php $strCodeOperation == "suppression"; ?>
+			<input type="submit" class="annuler" name="btn_suppression" value="Supprimer"><img src="<?php echo $niveau;?>liaisons/svg/poubelle.svg" alt="">
 			</form>
 			</li>
 			</a>

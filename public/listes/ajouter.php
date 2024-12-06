@@ -14,27 +14,21 @@ else{
 if($strCodeOperation == "ajouter"){
     $arrListes=array();
 
-    $arrListes['id_liste']= "0";
-		$arrListes['nom']= "";
+		$arrListes['nom']= $_GET['nom'];
 		$arrListes['id']= "";
-		$arrListes['couleur_id']= "";
+		$arrListes['couleur_id']= $_GET['couleur_id'];
+        $arrListes['utilisateur_id']= "1";
 
-    $strRequeteAjout = "INSERT INTO listes ".
-    "(nom, couleur_id)".
-    " VALUES ('". 
-    $arrListes['nom']."','".
-    $arrListes['couleur_id'].")";
-
-    // $pdosResultat = $objPdo->query($strRequeteAjout);
-    // $pdosResultat->closeCursor();
+    $strRequeteAjout = "INSERT INTO listes (nom, couleur_id, utilisateur_id) VALUES ('". $arrListes['nom']. "','" . $arrListes['couleur_id']."','".$arrListes['utilisateur_id']."')";
+var_dump($strRequeteAjout);
+    $pdosResultat = $objPdo->query($strRequeteAjout);
+    $pdosResultat->closeCursor();
+    header("Location:".$niveau."index.php");
 }
 
-$arrListes=array();
 
-$arrListes['id_liste']= "0";
-		$arrListes['nom']= "";
-		$arrListes['id']= "";
-		$arrListes['couleur_id']= "";
+
+
 
 
         $arrCouleur=array();
@@ -80,7 +74,7 @@ $arrListes['id_liste']= "0";
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>Ajout</title>
-	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
+	<?php include ($niveau . "liaisons/fragments/headlinks.inc.php");?>
 </head>
 <body>
 <?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
@@ -88,22 +82,24 @@ $arrListes['id_liste']= "0";
 <br>
 <br>
 <form action="<?php echo $niveau ?>listes/ajouter.php" class="bloc" method="GET">
-
-        <input type="hidden" name="couleur_id" value="<?php echo $arrListes[0]['couleur_id']; ?>">
    
   
-        <label for="nom">Nom de la liste:</label>
-        <input type="text" id="nom" name="nom" value="<?php echo $arrListes['nom']; ?>">
+        <h2><label for="nom">Nom de la liste:</label></h2>
+        <input type="text" size="50" id="nom" name="nom" value="">
   
     <br>
-    <section><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
-		<label for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
-		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="hexadecimal" value="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><br>
+    <h2>Choisir une couleur:</h2>
+    <section class="couleurs">
+        
+    <?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
+
+		<label class="couleurs__nom" for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
+		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="couleur_id" value="<?php echo $arrCouleur[$cpt]['id']; ?>"><br>
         <?php  } ?>
 	</section>
 	<br>
         	<input type="submit" value="Ajouter" class="bouton" name="btn_ajouter">
-            <a href="<?php echo $niveau ?>index.php">Annuler</a><br>
+            <a class="bouton__annuler" href="<?php echo $niveau ?>index.php">Annuler <img src="<?php echo $niveau;?>liaisons/svg/cancel.svg" alt=""></a><br>
 
 	</form>
     <br>

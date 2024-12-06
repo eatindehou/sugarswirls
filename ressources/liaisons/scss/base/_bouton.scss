@@ -29,6 +29,7 @@
   background-color: $rouge;
   color: $noir;
   border: none;
+  width: 60%;
   &:after {
     //content: "»";
     margin-left: 0.4em;
@@ -41,4 +42,8 @@
   }
 }
 
-
+.annuler{
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
