@@ -109,7 +109,7 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 	<meta name="author" content="">
 	<meta charset="utf-8">
 	<title>Un beau titre ici!</title>
-	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
+	<?php include ("liaisons/fragments/headlinks.inc.php");?>
 </head>
 
 <body>
