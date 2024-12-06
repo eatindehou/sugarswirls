@@ -11,9 +11,6 @@ if(isset($_GET['btn_suppression'])){
 	$strCodeOperation = "suppression";
 	$id_liste = $_GET['id_liste'];
 }
-else{
-	$arrIDListes;
-}
 
 if($strCodeOperation == "suppression"){
 	$strRequete = "DELETE FROM listes WHERE id =".$id_liste ;

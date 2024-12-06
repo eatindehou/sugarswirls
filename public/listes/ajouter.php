@@ -1,6 +1,5 @@
-Ajouter un liste!
+
 <?php $niveau="../";?>
-<a href="<?php echo $niveau;?>index.php">Retour</a>
 <?php include ($niveau . "liaisons/php/config.inc.php");?>
 
 <?php
@@ -80,29 +79,35 @@ $arrListes['id_liste']= "0";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <title>Modification</title>
-	
+    <title>Ajout</title>
+	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
 </head>
 <body>
-<form action="<?php echo $niveau ?>listes/ajouter.php" method="GET">
-    <div>
-        <input type="hidden" name="couleur_id" value="<?php echo $arrListes['couleur_id']; ?>">
-    </div>
-    <div>
+<?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
+<main class="main">
+<br>
+<br>
+<form action="<?php echo $niveau ?>listes/ajouter.php" class="bloc" method="GET">
+
+        <input type="hidden" name="couleur_id" value="<?php echo $arrListes[0]['couleur_id']; ?>">
+   
+  
         <label for="nom">Nom de la liste:</label>
         <input type="text" id="nom" name="nom" value="<?php echo $arrListes['nom']; ?>">
-    </div>
-
-    <div><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
+  
+    <br>
+    <section><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
 		<label for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
 		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="hexadecimal" value="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><br>
         <?php  } ?>
-	</div>
+	</section>
 	<br>
-    <div>
-        	<input type="submit" value="Ajouter" name="btn_ajouter">
+        	<input type="submit" value="Ajouter" class="bouton" name="btn_ajouter">
             <a href="<?php echo $niveau ?>index.php">Annuler</a><br>
-    </div>
 
 	</form>
+    <br>
+    <br>
+    </main>
+    <?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
 </body>

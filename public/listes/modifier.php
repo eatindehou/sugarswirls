@@ -1,7 +1,5 @@
-Modifier une liste!
 
 <?php $niveau="../";?>
-<a href="<?php echo $niveau;?>index.php">Retour</a>
 <?php include ($niveau . "liaisons/php/config.inc.php");?>
 
 <?php 
@@ -124,34 +122,34 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>Modification</title>
-	
+	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
 </head>
 <body>
-<form action="<?php echo $niveau ?>index.php" method="GET">
-	<div>
+<?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
+<main class="main">
+    <br><br>
+<form action="<?php echo $niveau ?>index.php" class="bloc" method="GET">
+	
         <input type="hidden" name="id" value="<?php echo $id_liste; ?>">
-    </div>
-    <div>
+  
         <input type="hidden" name="couleur_id" value="<?php echo $arrListes[0]['couleur_id']; ?>">
-    </div>
-    <div>
+ 
         <label for="nom">Nom de la liste:</label>
         <input type="text" id="nom" name="nom" value="<?php echo $arrListes[0]['nom']; ?>">
-    </div>
+  
 
-    <div><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
+    <section><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
 		<label for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
 		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="hexadecimal" value="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" <?php if(!isset($_GET['btn_modifier'])){echo ecrireChecked($arrCouleur[$cpt]['hexadecimal'], 'hexadecimal');} ?>><br>
 		
         <?php  } ?>
-	</div>
-	
+	</section>
 	
 	<br>
-    <div>
-        	<input type="submit" value="Enregistrer" name="btn_modifier">
-			<!-- <input type="submit" value="Supprimer" name="btn_supprimer"> -->
-    </div>
-
+        	<input type="submit" value="Enregistrer" class="bouton" name="btn_modifier">
+            <a href="<?php echo $niveau ?>index.php">Annuler</a><br>
 	</form>
+    <br><br>
+    </main>
+    <?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
 </body>
