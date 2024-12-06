@@ -640,6 +640,20 @@ h3--desktop,
 .bouton:hover {
   background-color: #FF9603;
 }
+.bouton__annuler {
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 0.7em 1.2em;
+  background-color: #F1255F;
+  color: #000;
+  border: none;
+}
+.bouton__annuler:after {
+  margin-left: 0.4em;
+}
+.bouton__annuler:hover {
+  background-color: #A60A36;
+}
 /** Grille 12 colones **/
 /*** Classe conteneur pour le centrage et l'affichage de la grille en arrière-plan ***/
 @media (min-width: 600px) {
@@ -757,6 +771,13 @@ h3--desktop,
   padding: 0.5em;
   border-radius: 9px;
 }
+.liste__lien {
+  color: #FFF;
+  text-decoration: none;
+}
+.liste__lien:hover {
+  text-decoration: underline;
+}
 
 .item {
   list-style-type: none;
@@ -804,6 +825,13 @@ main {
   margin: 3em 20em;
   margin-top: 3em auto;
   background-color: #FFF;
+}
+
+.couleurs {
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .entete {

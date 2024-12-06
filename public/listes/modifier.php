@@ -138,7 +138,7 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
         <input type="text" id="nom" name="nom" value="<?php echo $arrListes[0]['nom']; ?>">
   
 
-    <section><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
+    <section class="couleurs"><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
 		<label for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
 		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="hexadecimal" value="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" <?php if(!isset($_GET['btn_modifier'])){echo ecrireChecked($arrCouleur[$cpt]['hexadecimal'], 'hexadecimal');} ?>><br>
 		

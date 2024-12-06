@@ -24,4 +24,21 @@
   }
 }
 
+.bouton__annuler {
+  @include boutonCommun;
+  background-color: $rouge;
+  color: $noir;
+  border: none;
+  &:after {
+    //content: "»";
+    margin-left: 0.4em;
+  }
+  &:hover {
+    background-color: #A60A36;
+  }
+  &:active {
+    // background-color: transparentize($vertLime, 0.5);
+  }
+}
+
 

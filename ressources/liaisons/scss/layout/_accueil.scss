@@ -64,6 +64,16 @@ width: 200px;
 &__titre{
   @include titre;
 }
+
+&__lien{
+color: $blanc;
+text-decoration: none;
+}
+
+&__lien:hover{
+text-decoration: underline;
+  }
+
 }
 
 .item{
@@ -110,6 +120,13 @@ main{
   margin: 3em 20em;
   margin-top: 3em auto;
   background-color: $blanc;
+}
+
+.couleurs{
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 
