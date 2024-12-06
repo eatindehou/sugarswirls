@@ -12,6 +12,17 @@
 
 }
 
+@media(min-width: $desktop){
+  .echeance{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+  }
+}
+
+
 .intro{
   text-align: center;
   margin: 3em;
@@ -30,6 +41,15 @@
   }
 }
 
+.infos{
+  @media(min-width: $desktop){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+
 .listes{
   padding: 2em;
   display: flex;
@@ -38,8 +58,12 @@
 }
 
 .liste{
-@include block;
 width: 200px;
+@include block;
+
+&__titre{
+  @include titre;
+}
 }
 
 .item{
@@ -48,10 +72,12 @@ width: 200px;
   text-align: center;
   margin: 1em auto;
 
+  @media(min-width: $desktop){
+    width: 700px;
+  }
+
   &__titre{
-    background-color: $blanc;
-    padding: .5em;
-    border-radius: 12px;
+    @include titre;
   }
 }
 

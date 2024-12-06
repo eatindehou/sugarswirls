@@ -632,9 +632,13 @@ h3--desktop,
   padding: 0.7em 1.2em;
   background-color: #F8B454;
   color: #000;
+  border: none;
 }
 .bouton:after {
   margin-left: 0.4em;
+}
+.bouton:hover {
+  background-color: #FF9603;
 }
 /** Grille 12 colones **/
 /*** Classe conteneur pour le centrage et l'affichage de la grille en arrière-plan ***/
@@ -701,6 +705,15 @@ h3--desktop,
   flex-direction: row;
 }
 
+@media (min-width: 601px) {
+  .echeance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+  }
+}
 .intro {
   text-align: center;
   margin: 3em;
@@ -717,6 +730,14 @@ h3--desktop,
   flex-direction: row;
 }
 
+@media (min-width: 601px) {
+  .infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
 .listes {
   padding: 2em;
   display: flex;
@@ -725,11 +746,16 @@ h3--desktop,
 }
 
 .liste {
+  width: 200px;
   list-style-type: none;
   padding: 1.5em;
   margin: 1em;
   border-radius: 20px;
-  width: 200px;
+  background-color: #FFF;
+}
+.liste__titre {
+  padding: 0.5em;
+  border-radius: 9px;
 }
 
 .item {
@@ -737,14 +763,19 @@ h3--desktop,
   padding: 1.5em;
   margin: 1em;
   border-radius: 20px;
+  background-color: #FFF;
   width: 300px;
   text-align: center;
   margin: 1em auto;
 }
+@media (min-width: 601px) {
+  .item {
+    width: 700px;
+  }
+}
 .item__titre {
-  background-color: #FFF;
   padding: 0.5em;
-  border-radius: 12px;
+  border-radius: 9px;
 }
 
 main {
@@ -779,6 +810,10 @@ main {
 .piedDePage {
   background-color: #FFF;
 }
+.piedDePage__copyRights {
+  text-align: center;
+}
+
 /**
 * @author Elma Atindehou - 2233755@csfoy.ca
 */

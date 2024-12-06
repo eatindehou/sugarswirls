@@ -55,8 +55,8 @@ $complete = false
 <head>
 	<meta charset="utf-8">
 	<title>Items de la liste Devoirs à faire</title>
-	<?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
-	<?php include($niveau . "liaisons/fragments/headlinks.inc.html") ?>
+	<?php include($niveau."liaisons/fragments/entete.inc.php") ?>
+	<?php include($niveau."liaisons/fragments/headlinks.inc.html") ?>
 </head>
 
 <body>

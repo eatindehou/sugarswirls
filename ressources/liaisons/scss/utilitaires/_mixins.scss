@@ -72,9 +72,19 @@
     padding: 1.5em;
     margin: 1em;
     border-radius: 20px;
+    background-color: $blanc;
 }
 
+@mixin titre {
+    padding: .5em;
+    border-radius: 9px;
+}
 
+// HIERACHIE DES TEXTES
+// H1
+@mixin titreH1{
+    font-size: 3.75rem ;
+}
 
 
 
