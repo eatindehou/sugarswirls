@@ -26,10 +26,6 @@
 
 
 /*** ENTETE ****/
-body {
-  background-color: rgba(248, 180, 84, 0.4);
-}
-
 .menuListe__listes {
   display: flex;
   flex-direction: row;

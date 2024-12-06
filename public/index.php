@@ -8,15 +8,15 @@
 $strCodeOperation = "";
 
 if(isset($_GET['btn_suppression'])){
-	$arrIDListes=$_GET['id_listes'];
 	$strCodeOperation = "suppression";
+	$id_liste = $_GET['id_liste'];
 }
 else{
 	$arrIDListes;
 }
 
 if($strCodeOperation == "suppression"){
-	$strRequete = "DELETE FROM listes WHERE id IN (". implode(',' , $arrIDListes).")";
+	$strRequete = "DELETE FROM listes WHERE id =".$id_liste ;
 
 	$pdosResultat = $objPdo->query($strRequete);
 }
@@ -174,10 +174,15 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 
 		<ul class="listes">
 		<?php for($cpt=0;$cpt<count($arrListes);$cpt++){?>
+			<a href="<?php echo $niveau ?>items/afficher.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">
 			<li class="liste" style="border-left: 5px solid <?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;">
 			<h3 class="liste__titre" style="background-color:<?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;"><?php echo $arrListes[$cpt]["nom"];?></h3>
 			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>
+			<input type="hidden" name="id_liste" value="<?php echo $arrListes[$cpt]["id"]; ?>">
+			<input type="submit" name="btn_suppression" value="Supprimer">
+			<?php $strCodeOperation == "suppression"; ?>
 			</li>
+			</a>
 		<?php } ?>
 		</ul>
 		</form>

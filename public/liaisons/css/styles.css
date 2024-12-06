@@ -611,10 +611,10 @@ h3--desktop,
   text-decoration: none;
 }
 .hyperlien:visited {
-  color: #226aa0;
+  color: rgb(33.5753424658, 106.0273972603, 159.9246575342);
 }
 .hyperlien:hover {
-  color: #144061;
+  color: rgb(20.301369863, 64.1095890411, 96.698630137);
   text-decoration: underline;
 }
 .hyperlien:active {
@@ -779,7 +779,7 @@ h3--desktop,
 }
 
 main {
-  background-color: rgba(248, 180, 84, 0.4);
+  background-color: rgba(248, 180, 84, 0.5);
 }
 
 .recherche {
@@ -842,10 +842,6 @@ main {
 
 
 /*** ENTETE ****/
-body {
-  background-color: rgba(248, 180, 84, 0.4);
-}
-
 .menuListe__listes {
   display: flex;
   flex-direction: row;
