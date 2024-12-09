@@ -27,29 +27,56 @@
 
 
 /*** ENTETE ****/
+/*** ENTETE DE PAGE ****/
+
+.pAutreTaches {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media(min-width: $desktop){
+        width: 60%;
+     }
+}
+
+// NAVIGATION
+.menuListe {
+    width: 96%;
+    margin: 0 auto;
+}
+
 // TEXTE DE GRANDE TAILLE *** PAGE DES TYPOS
 // UL
-.menuListe__listes{
+.menuListe__listes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 // LI
-.menuListe__items{
+.menuListe__items {
     list-style: none;
     padding: 1rem;
-    width: calc(100%/3);
+    width: calc(100%/5);
+    margin: 1rem 1rem 2.5rem 1rem ;
+    height: 3rem;
 
 }
-// LIENS *** PAGE DES LIENS
-.menuListe__lien{
+.menuListe__items:focus {
+
+outline: none;
+}
+
+// LIENS
+.menuListe__lien {
     // width: cal(100%/3) ;
     width: 100%;
     text-decoration: none;
-    border-left: 1rem solid black;
 }
-
-
+.menuListe__lien:focus {
+outline: none;
+}
 
 
 /*** SECTION LISTES ****/
@@ -57,36 +84,249 @@
 // H1 *** PAGE DES TYPOS
 
 // ARRIERE PLAN
-.ItemsDeLaListe{
-    padding:1rem;
-    background-color: rgba(255, 122, 197, 0.5);
-    border-radius:2rem;
-}
-.mainListe{
-    margin:2rem auto;
+// UL  
+.itemsDeLaListe {
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 2rem;
     width: 90%;
-    border-radius:2rem;
+    margin: 0 auto;
+    box-shadow: .1rem .4rem 1rem .4rem #caa269;
+
+}
+
+// MAIN CONTENU PRINCIPAL
+.mainListe {
+    width: 100%;
 }
 
 /*** LISTES ****/
+// TITRE LISTE
+.conteneurTitreListe {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+// PARAGRAPHE DE LISTE
+.descriptionItems {
+    display: flex;
+    flex-direction: column;
+}
 
 // TEXTE DE TAILLE MOYENNE
-// UL
-.itemsDeLaListe__item{
-    background-color: white;
-    padding:1rem;
-    margin-bottom: 1rem;
-    border-top:.6rem solid black;
-    border-radius:2rem;
-}
+
 // LI
-.ItemsDeLaListe__liste{
+
+.itemsDeLaListe__item {
+    position: relative;
     list-style: none;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-top: .6rem solid black;
+    border-radius: 2rem;
+    width: 90%;
+    height: 20rem;
 }
-.itemsDeLaListe__item li {
-    list-style: none;
-}
+
 // PARAGRAPHE
+.conteneurBtnEditon {
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// BOUTONS ÉDITION
+// COMPLETION
+button {
+    background: none;
+    border: none;
+}
+
+// SUPPRESSION
+.iconeSupp {
+    margin-top: 1.5rem;
+}
+
+.svg {
+    background-color: none;
+
+}
+
 // TEXTE DE PETITE TAILLE *** PAGE DES TYPOS
 // LIENS *** PAGE DES LIENS
+/*** PAGE DE MODIFICATION/AJOUT****/
+.divMofification {
+    height: 90vh;
+}
+
+input[type="text"], .selectionDate {
+    max-width: 60%;
+    padding: 2rem;
+    border-radius: 1.7rem;
+    border-left: .3rem solid $interactivite;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: .3rem 0 .5rem 0 rgba(192, 115, 7, 0.25) inset;
+}
+
+// FORMULAIRE
+.formulireModifAjout div {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 4rem 2rem;
+}
+
+// DATE
+.selectionDate {
+    padding: .7rem 0 .7rem .4rem;
+    border-radius: 1.3rem;
+    margin-right: 1rem;
+}
+
+.selectionDate:first-of-type {
+    width: 25%;
+}
+
+.selectionDate:nth-of-type(2) {
+    width: 10%;
+}
+
+.selectionDate:nth-of-type(3) {
+    width: 15%;
+}
+
+// BOUTONS
+.conteneurBoutons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    margin: 5rem auto 0 auto;
+}
+
+input[name="btn_modifier"],input[name="btn_nouveau"] {
+    margin-right: 4rem;
+    width: 100%;
+
+}
+.formNouveau{
+    margin-right: 4rem;
+    width: 50%;
+}
+
+// RADIO RAPPELS
+.titreNiveau2+.conteneurRadio {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+}
+
+input[name="rappel"] {
+    opacity: 0;
+}
+
+label[for="oui"] {
+    margin-right: 3rem;
+}
+
+.boutonRadio {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: .2rem solid black;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.boutonRadio:hover {
+    transform: translateY(-10%) scale(1.2);
+    border-color: $interactiviteIcone;
+    box-shadow: 0 0 .4rem $interactiviteIcone
+}
+
+input[name="rappel"]:checked+.boutonRadio::after{
+    position: absolute;
+    top:.1rem;
+    left:.2rem;
+    content:"🟠";
+}
+input[name="rappel"]:checked+.boutonRadio{
+    border: .2rem solid $interactiviteIcone;
+
+}
+input[name="rappel"] +.boutonRadio:focus::after{
+    position: absolute;
+    top:.1rem;
+    left:.2rem;
+    content:"🟠";
+
+}
+input[name="rappel"] +.boutonRadio:focus{
+    border-radius:0;
+    border: .3rem double black;
+
+}
+// DIV ÉCHÉANCE
+.titreNiveau2 +.divEcheance{
+    display:flex;
+    flex-direction: row;
+    justify-content:start;
+    align-items: center;
+    position:relative;
+}
+input[name="ajoutSans"]{
+    margin-left: .7rem;
+    opacity :0;
+}
+.boutonCheckbox{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top:0;
+    left:17.5rem;
+    border-radius: 5%;
+    margin-right: 1rem;
+    border: .2rem solid black;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.boutonCheckbox:hover {
+    transform: translateY(-10%) scale(1.2);
+    border-color: $interactiviteIcone;
+    box-shadow: 0 0 .4rem $interactiviteIcone
+}
+
+input[name="ajoutSans"]:checked+.boutonCheckbox::after{
+    position: absolute;
+    top:.1rem;
+    left:.2rem;
+    content:"✓";
+}
+input[name="ajoutSans"]:checked+.boutonCheckbox{
+    border: .2rem solid $interactiviteIcone;
+
+}
+input[name="ajoutSans"] +.boutonCheckbox:focus::after{
+    position: absolute;
+    top:.1rem;
+    left:.2rem;
+    content:"✓";
+
+}
+input[name="ajoutSans"] +.boutonCheckbox:focus{
+    border-radius:0;
+    border: .3rem double black;
+
+}
 /*** PIED DE PAGE ****/

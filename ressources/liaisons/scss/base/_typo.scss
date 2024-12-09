@@ -90,6 +90,7 @@ body {
 
 .titreNiveau1 {
   font-family: $titreH1;
+  @include titreH1;
 }
 .titreNiveau2 {
   font-family: $titreH2;
@@ -102,52 +103,54 @@ body {
 }
 .textegGrandeTaille{
   font-family: $texteGrandeTaille;
+  @include titreDeGrandeTaille;
 }
-.texteMoyenneTaille{
+.textegGrandeTaille + .texteMoyenneTaille{
   font-family: $texteMoyenneTaille;
+  @include titreMoyenneTaille;
 }
-h1,
-.titreNiveau1 {
-  text-align: center;
-  @include fontSize(28px);
-  margin: 0;
-  &--desktop {
-    @include fontSize(48px);
-    padding-bottom: 15px;
-    position: relative;
-    &:after {
-      // background-color: $bleuMoyen;
-      content: "";
-      display: inline-block;
-      width: 150px;
-      height: 8px;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
-  }
+.menuListe__lien, .hyperlien{
+  font-family: $textePetiteTaille;
+  @include lienToutesLesListes;
 }
+.descriptionItems + p +p{
+  color: $gris;
+}
+label[for="nom_item"]{
+  @include texteDeGrandeTaille
+}
+// h1,
+// .titreNiveau1 {
+//   text-align: center;
+//   @include fontSize(28px);
+//   margin: 0;
+//   &--desktop {
+//     @include fontSize(48px);
+//     padding-bottom: 15px;
+//     position: relative;
+//   }
+// }
 
-h2,
-.titreNiveau2{
-  text-align: center;
-  @include fontSize(20px);
-  text-transform: uppercase;
-  &--desktop {
-    @include fontSize(28px);
-  }
-  @media(min-width:$desktop){
-    text-align: left;
-  }
-}
+// h2,
+// .titreNiveau2{
+//   text-align: center;
+//   @include fontSize(20px);
+//   text-transform: uppercase;
+//   &--desktop {
+//     @include fontSize(28px);
+//   }
+//   @media(min-width:$desktop){
+//     text-align: left;
+//   }
+// }
 
-h3,
-.titreNiveau3 {
-  @include fontSize(18px);
-  &--desktop {
-    @include fontSize(22px);
-  }
-}
+// h3,
+// .titreNiveau3 {
+//   @include fontSize(18px);
+//   &--desktop {
+//     @include fontSize(22px);
+//   }
+// }
 
 .texte {
   font-family: $texteCourant;

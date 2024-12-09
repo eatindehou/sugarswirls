@@ -1,0 +1,9 @@
+{
+    "nom" : "Veuillez entrer votre nom!",
+    "completion" : "Veuillez entrer votre prenom!",
+    "echeance" : "Entrez une date de naissance valide!",
+    "echouer" : "Une erreur est survenue!",
+    "ajouter" : "La liste a été ajouté!",
+    "supprimer" : "La liste a été supprimé!",
+    "modifier" : "La liste a été modifié!"
+}

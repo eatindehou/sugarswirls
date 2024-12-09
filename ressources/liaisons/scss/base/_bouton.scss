@@ -1,44 +1,54 @@
 /**
 * @author Prenom Nom courriel
 */
-@mixin boutonCommun {
-  text-decoration: none;
-  border-radius: 10px;
-  padding: 0.7em 1.2em;
-}
 
 .bouton {
   @include boutonCommun;
   background-color: $interactivite;
   color: $noir;
   border: none;
+
   &:after {
     //content: "»";
     margin-left: 0.4em;
   }
+
   &:hover {
-    background-color: #FF9603;
+    background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
   }
+
   &:active {
-    // background-color: transparentize($vertLime, 0.5);
+    background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
+  }
+  &:focus {
+    background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
+    border :.3rem solid $interactivite;
+    outline : none;
   }
 }
 
-.bouton__annuler {
+.bouton__annuler, input[name="btn_supprimer"], input[name="btn_suppression"] {
   @include boutonCommun;
   background-color: $rouge;
   color: $noir;
   border: none;
-  width: 60%;
+
   &:after {
     //content: "»";
     margin-left: 0.4em;
   }
+
   &:hover {
-    background-color: #A60A36;
+    background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
   }
+  
   &:active {
-    // background-color: transparentize($vertLime, 0.5);
+    background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
+  }
+  &:focus {
+    background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
+    border :.3rem solid $rouge;
+    outline : none;
   }
 }
 

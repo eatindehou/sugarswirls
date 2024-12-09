@@ -2,22 +2,100 @@
 * @author Prenom Nom courriel
 * @todo Compléter selon l'énoncé de l'exercice
 */
-$hyperlien: #2678B5;
-$hyperlien_actif: #012d61;
+$hyperlien: black;
+$hyperlien_actif: black;
 
-.hyperlien{
+.hyperlien {
+  position: relative;
+  padding: 1rem;
   color: $hyperlien;
-  font-size: 48px;
   text-decoration: none;
+  border-bottom: .3rem solid black;
+
   &:visited {
     color: darken($hyperlien, 5%);
+    border-bottom: .3rem solid $interactivite;
   }
+  
   &:hover {
-    color: darken($hyperlien, 20%);
-    text-decoration: underline;
+    border-bottom: .3rem solid $interactivite;
+    color: $hyperlien;
   }
+  &:hover::before {
+    position: absolute;
+    top: 1rem;
+    left: 8rem;
+    font-size:2.5rem;
+    content: "➙";
+    color: $interactivite;
+  }
+  
   &:active {
     color: $hyperlien_actif;
-    text-decoration: underline;
+    border-bottom: .3rem solid $interactivite;
   }
+  &:active::before {
+    position: absolute;
+    top: 1rem;
+    left: 8rem;
+    font-size:2.5rem;
+    content: "➙";
+    color: $interactivite;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:focus {
+    border-top: .3rem solid $interactivite;
+    border-bottom: .3rem solid $interactivite;
+    border-left: .3rem solid $interactivite;
+    border-right: none;
+  }
+  &:focus::before {
+    position: absolute;
+    top: 1rem;
+    left: 8rem;
+    font-size:2.5rem;
+    content: "➙";
+    color: $interactivite;
+  }
+}
+
+.lienConsulter:hover::before {
+  position: absolute;
+  top: 1rem;
+  left: 23rem;
+  font-size:3rem;
+  content: "➙";
+  color: $interactivite;
+}
+.lienConsulter{
+margin-top: 20rem;
+}
+.ajoutListe:hover::before {
+  position: absolute;
+  top: 0;
+  left: 12.5rem;
+  font-size:3rem;
+  content: "⊕";
+  color: $interactivite;
+}
+
+.ajoutListePrincipale:hover::before {
+  position: absolute;
+  top: 0;
+  left: 16rem;
+  font-size:3rem;
+  content: "⊕";
+  color: $interactivite;
+}
+.lienRetour:hover::before {
+  position: absolute;
+  top: .5rem;
+  left: 16rem;
+  font-size:3rem;
+  content: "➙";
+  color: $interactivite;
 }
