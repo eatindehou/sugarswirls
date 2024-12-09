@@ -98,6 +98,7 @@ outline: none;
 // MAIN CONTENU PRINCIPAL
 .mainListe {
     width: 100%;
+    padding-bottom: 10rem;
 }
 
 /*** LISTES ****/
@@ -162,7 +163,10 @@ button {
 // LIENS *** PAGE DES LIENS
 /*** PAGE DE MODIFICATION/AJOUT****/
 .divMofification {
-    height: 90vh;
+    height: 110vh;
+    padding-left: 7rem;
+    display: flex;
+    flex-direction: column;
 }
 
 input[type="text"], .selectionDate {

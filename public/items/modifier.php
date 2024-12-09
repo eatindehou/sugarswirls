@@ -1,7 +1,6 @@
 <?php $niveau = "../"; ?>
 <?php include($niveau . "liaisons/php/config.inc.php"); ?>
 <?php
-var_dump($_GET);
 $strFichierTexte = file_get_contents($niveau . 'liaisons/js/messages-erreur.json');
 $jsonMessagesErreur = json_decode($strFichierTexte);
 $arrChampsErreur = array();
@@ -399,16 +398,15 @@ $pdoConnexionListePrincipale->closeCursor();
                             <span class="boutonRadio"></span></label>
 
                     </div>
-                    <a class="hyperlien" href="index.php">Annuler</a>
+                    <a class="hyperlien" href="index.php">Annuler</a><br><br>
+                            <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
                      <div class="conteneurBoutons">
-            <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') {
-                // var_dump($strCodeErreur) ?>
+            <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') { ?>
 
                 <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
                 <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
 
-            <?php } else {
-                var_dump($strCodeErreur) ?>
+            <?php } else { ?>
                 <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
                 <input class="bouton" type="submit" value="Ajouter" id="btn_ajouter" name="btn_ajouter">
 
@@ -423,7 +421,6 @@ $pdoConnexionListePrincipale->closeCursor();
             <?php } ?>
         </div>
 
-        <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
     </main>
     <?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
 

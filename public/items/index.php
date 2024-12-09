@@ -161,7 +161,7 @@ $pdoConnexionToutesLesListes->closeCursor();
 					<?php echo $arrNomListe['nom'] ?>
 				</h1>
 				<a class="hyperlien ajoutListe"
-					href="modifier.php?id_liste=<?php echo $idListePrincipale; ?>&btn_nouveau=nouveau"
+					href="modifier.php?id_liste=<?php echo $strChampIdListe;?>&btn_nouveau=nouveau&nom_liste=<?php echo $arrNomListe["nom"];?>"
 					class="textePetiteTaille">Ajouter un item
 				</a>
 			</div>
