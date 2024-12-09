@@ -781,6 +781,7 @@ h3--desktop,
 .liste__lien {
   color: #FFF;
   text-decoration: none;
+  text-shadow: 1px -1px 0 #444, 1px 1px 0 #444;
 }
 .liste__lien:hover {
   text-decoration: underline;
