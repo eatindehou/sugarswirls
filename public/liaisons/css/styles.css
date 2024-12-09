@@ -718,7 +718,6 @@ label[for=nom_item] {
   background-color: #f0245e;
   color: #000;
   border: none;
-  width: 60%;
 }
 .bouton__annuler:after, input[name=btn_supprimer]:after, input[name=btn_suppression]:after {
   margin-left: 0.4em;
@@ -1132,7 +1131,7 @@ input[name=btn_modifier], input[name=btn_nouveau] {
 
 .formNouveau {
   margin-right: 4rem;
-  width: 60%;
+  width: 50%;
 }
 
 .titreNiveau2 + .conteneurRadio {
