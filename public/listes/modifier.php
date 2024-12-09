@@ -13,11 +13,10 @@ else{
     $id_liste = 0;
 }
 
-
-
 if(isset($_GET['btn_modifier'])){
+    var_dump("allo");
     $arrListes['nom']=$_GET['nom'];
-    $arrListes['id']=$_GET['id'];
+    $arrListes['id']=$_GET['id_liste'];
     $arrListes['couleur_id']=$_GET['couleur_id'];
     
     
@@ -25,10 +24,11 @@ if(isset($_GET['btn_modifier'])){
                 "nom='".$arrListes['nom']."', ".
                 "couleur_id='".$arrListes['couleur_id']. 
                 "' WHERE id=".$arrListes['id'];
-    echo $strRequete;
+
                 $pdosResultat = $objPdo->query($strRequete);
                 $strCodeErreur = $objPdo->errorCode();
-    
+
+    header("Location:".$niveau."index.php");
 }
 else{
     $strRequete = "SELECT id, nom, couleur_id FROM listes WHERE id=".$id_liste. " ORDER BY nom ";
@@ -122,32 +122,34 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>Modification</title>
-	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
+	<?php include ($niveau . "liaisons/fragments/headlinks.inc.php");?>
 </head>
 <body>
 <?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
 <main class="main">
     <br><br>
-<form action="<?php echo $niveau ?>index.php" class="bloc" method="GET">
+<form action="<?php echo $niveau ?>listes/modifier.php" class="bloc" method="GET">
 	
-        <input type="hidden" name="id" value="<?php echo $id_liste; ?>">
-  
-        <input type="hidden" name="couleur_id" value="<?php echo $arrListes[0]['couleur_id']; ?>">
- 
-        <label for="nom">Nom de la liste:</label>
-        <input type="text" id="nom" name="nom" value="<?php echo $arrListes[0]['nom']; ?>">
-  
-
-    <section class="couleurs"><?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
-		<label for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
-		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="hexadecimal" value="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" <?php if(!isset($_GET['btn_modifier'])){echo ecrireChecked($arrCouleur[$cpt]['hexadecimal'], 'hexadecimal');} ?>><br>
-		
+        <h2><label for="nom">Nom de la liste:</label></h2>
+        <input type="text" size="50" id="nom" name="nom" value="<?php echo $arrListes[0]['nom']; ?>">
+        <input type="hidden" id="liste" name="id_liste" value="<?php echo $arrListes[0]['id']; ?>">     
+    <br>
+        <h2>Choisir une couleur:</h2>
+    <section class="couleurs">
+        
+    <?php  for($cpt=0;$cpt<$pdosResultatListe->rowCount();$cpt++){ ?>
+		<label class="couleurs__nom" for="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>"><?php echo $arrCouleur[$cpt]['nom_fr']; ?></label>
+        <br>
+		<input type="radio" id="<?php echo $arrCouleur[$cpt]['hexadecimal']; ?>" name="couleur_id" value="<?php echo $arrCouleur[$cpt]['id']; ?>" 
+        <?php if(!isset($_GET['btn_modifier']))
+        {
+            echo ecrireChecked($arrCouleur[$cpt]['hexadecimal'], 'hexadecimal');} ?>><br>
         <?php  } ?>
 	</section>
 	
 	<br>
         	<input type="submit" value="Enregistrer" class="bouton" name="btn_modifier">
-            <a href="<?php echo $niveau ?>index.php">Annuler</a><br>
+            <a class="bouton__annuler" href="<?php echo $niveau ?>index.php">Annuler <img src="<?php echo $niveau;?>liaisons/svg/cancel.svg" alt=""></a><br>
 	</form>
     <br><br>
     </main>

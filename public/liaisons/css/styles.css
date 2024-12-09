@@ -718,6 +718,7 @@ label[for=nom_item] {
   background-color: #f0245e;
   color: #000;
   border: none;
+  width: 60%;
 }
 .bouton__annuler:after, input[name=btn_supprimer]:after, input[name=btn_suppression]:after {
   margin-left: 0.4em;
@@ -732,6 +733,12 @@ label[for=nom_item] {
   background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
   border: 0.3rem solid #f0245e;
   outline: none;
+}
+
+.annuler {
+  border: none;
+  background-color: transparent;
+  position: relative;
 }
 
 /** Grille 12 colones **/
@@ -908,10 +915,14 @@ main {
 }
 
 .couleurs {
-  padding: 2em;
+  padding: 2em 2em 2em 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.couleurs__nom {
+  padding-left: 2.7em;
+  padding-right: 0.5em;
 }
 
 .entete {
