@@ -401,7 +401,7 @@ $pdoConnexionListePrincipale->closeCursor();
                     <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
                     <div class="conteneurBoutons">
                         <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') { ?>
-
+                            <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
                             <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
                             <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
 
