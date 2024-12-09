@@ -257,8 +257,9 @@ label[for="oui"] {
 
 input[name="rappel"]:checked+.boutonRadio::after{
     position: absolute;
-    top:.1rem;
-    left:.2rem;
+    font-size: 1rem;
+    top:.5rem;
+    left:.3rem;
     content:"🟠";
 }
 input[name="rappel"]:checked+.boutonRadio{

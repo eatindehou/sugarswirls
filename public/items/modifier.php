@@ -1,6 +1,7 @@
 <?php $niveau = "../"; ?>
 <?php include($niveau . "liaisons/php/config.inc.php"); ?>
 <?php
+var_dump($_GET);
 $strFichierTexte = file_get_contents($niveau . 'liaisons/js/messages-erreur.json');
 $jsonMessagesErreur = json_decode($strFichierTexte);
 $arrChampsErreur = array();
@@ -14,6 +15,9 @@ if (isset($_GET['id_item'])) {
 if (isset($_GET['id_liste'])) {
     $idListePrincipale = $_GET['id_liste'];
     // echo $idListePrincipale;
+}
+if (isset($_GET['nom_liste'])) {
+    $nom_itemSelectionne = $_GET['nom_liste'];
 }
 if (isset($_GET['ajoutSans'])) {
     $estAjouter = $_GET['ajoutSans'];
@@ -72,11 +76,12 @@ if ($strCodeOperation == 'nouveau') {
     $arrItem['annee'] = "";
     //$arrItem['echeance'] = "NULL";
     $arrItem['est_complete'] = "0";
+    $strEnteteH1 = "Ajout de la liste " . $nom_itemSelectionne;
 }
 if ($strCodeOperation == 'modifier' || $strCodeOperation == 'ajouter' || $strCodeOperation == 'supprimer') {
     $arrItem['id'] = $_GET['id_item'];
     $arrItem['nom'] = $_GET['nom_item'];
-    $arrItem['est_complete'] = $_GET['completion'];
+    // $arrItem['est_complete'] = $_GET['completion'];
     $arrItem['jour'] = $_GET['jour'];
     $arrItem['mois'] = $_GET['mois'];
     $arrItem['annee'] = $_GET['annee'];
@@ -90,23 +95,26 @@ if ($strCodeOperation == 'modifier' || $strCodeOperation == 'ajouter' || $strCod
     $blnResultat = checkdate($intMois, $intJour, $intAnnee);
     // var_dump($blnResultat);
     if ($blnResultat) {
-        $strDateValide = $intAnnee . "-" . $intMois . "-" . $intJour;
+        if ($estAjouter == 'on') {
+            $strDateValide = $intAnnee . "-" . $intMois . "-" . $intJour;
+        } else {
+            $strDateValide = NULL;
+        }
         if ($strCodeOperation == 'modifier') {
-            $strRequeteUpdate = "UPDATE items SET nom =:nom, 
-				est_complete =:completion,
+            $strRequeteUpdate = "UPDATE items SET nom =:nom,
 				echeance =:echeance
 				WHERE id =:id";
 
             $pdoConnexionUpdate = $objPdo->prepare($strRequeteUpdate);
 
             $pdoConnexionUpdate->bindValue(':nom', $arrItem['nom']);
-            $pdoConnexionUpdate->bindValue(':completion', $arrItem['est_complete']);
+            // $pdoConnexionUpdate->bindValue(':completion', $arrItem['est_complete']);
             $pdoConnexionUpdate->bindValue(':echeance', $strDateValide);
             $pdoConnexionUpdate->bindValue(':id', $id_itemSelectionne);
 
             $arrItem['id'] = $_GET['id_item'];
             $arrItem['nom'] = $_GET['nom_item'];
-            $arrItem['est_complete'] = $_GET['completion'];
+            // $arrItem['est_complete'] = $_GET['completion'];
             $strDateValide = $intAnnee . "-" . $intMois . "-" . $intJour;
             // $arrItem['id_categorie'] = $_GET['id_categorie'];
             // $arrItem['id_sport'] = $_GET['id_sport'];
@@ -122,14 +130,18 @@ if ($strCodeOperation == 'modifier' || $strCodeOperation == 'ajouter' || $strCod
             // var_dump($strCodeErreurInfo);
         } else {
             if ($strCodeOperation == 'ajouter') {
-
+                if ($estAjouter == 'on') {
+                    $strDateValide = $intAnnee . "-" . $intMois . "-" . $intJour;
+                } else {
+                    $strDateValide = NULL;
+                }
                 $strRequeteInsertion = " INSERT INTO items" .
-                    " (nom, est_complete, echeance, liste_id)" .
-                    "VALUES (:nom, :completion, :echeance, :liste_id)";
+                    " (nom, echeance, liste_id)" .
+                    "VALUES (:nom, :echeance, :liste_id)";
 
                 $pdoConnexionInsertion = $objPdo->prepare($strRequeteInsertion);
                 $pdoConnexionInsertion->bindValue(':nom', $arrItem['nom']);
-                $pdoConnexionInsertion->bindValue(':completion', $arrItem['est_complete']);
+                // $pdoConnexionInsertion->bindValue(':completion', $arrItem['est_complete']);
                 $pdoConnexionInsertion->bindValue(':liste_id', $idListePrincipale);
                 $pdoConnexionInsertion->bindValue(':echeance', $strDateValide);
 
@@ -139,7 +151,7 @@ if ($strCodeOperation == 'modifier' || $strCodeOperation == 'ajouter' || $strCod
                 $strCodeErreurInfo = $pdoConnexionInsertion->errorInfo();
                 $strMessage = $jsonMessagesErreur->{"ajouter"};
                 $strEnteteH1 = "Ajout de la liste " . $arrItem['nom'];
-                // var_dump($strCodeErreurInfo);
+                var_dump($strCodeErreurInfo);
             } else {
                 $strRequeteDelete = 'DELETE FROM items WHERE id IN (:idParticipant)';
                 $pdoConnexionDelete = $objPdo->prepare($strRequeteDelete);
@@ -158,8 +170,6 @@ if ($strCodeOperation == 'modifier' || $strCodeOperation == 'ajouter' || $strCod
         if ($estAjouter == 'on') {
             $strCodeErreur = -1;
             array_push($arrChampsErreur, "echeance");
-        } else {
-            $blnResultat = NULL;
         }
     }
 }
@@ -170,11 +180,11 @@ if ($arrItem['nom'] == "" || strlen($arrItem['nom']) > 55) {
     array_push($arrChampsErreur, "nom");
 }
 // Validation de l'échéance
-if ($arrItem['est_complete'] == "" || strlen($arrItem['est_complete']) > 2) {
-    // Si le prénom du participant est invalide
-    $strCodeErreur = -1;
-    array_push($arrChampsErreur, "completion");
-}
+// if ($arrItem['est_complete'] == "" || strlen($arrItem['est_complete']) > 2) {
+//     // Si le prénom du participant est invalide
+//     $strCodeErreur = -1;
+//     array_push($arrChampsErreur, "completion");
+// }
 
 function ecrireChecked($valeurRadio, $nomRadio)
 {
@@ -278,6 +288,8 @@ $pdoConnexionListePrincipale->closeCursor();
 <body>
     <header class="entetePage">
         <?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
+    </header>
+    <main class="mainListe">
         <br action="index.php" action="GET">
         <div class="pAutreTaches">
             <a class="textegGrandeTaille">Mes autres tâches</a>
@@ -292,7 +304,7 @@ $pdoConnexionListePrincipale->closeCursor();
                         onmouseout="this.style.borderLeftColor='black';"
                         onfocus="this.style.borderTop = '0.4rem solid <?php echo "#" . $arrNomToutesLesListes[$cptListe]["couleurs"] ?>' ;this.style.borderLeft = '0.4rem solid <?php echo "#" . $arrNomToutesLesListes[$cptListe]["couleurs"]; ?>' ;"
                         onblur="this.style.borderTop = '0';" tabindex="0">
-                        <a href="#" class=" menuListe__lien"
+                        <a href="index.php?id_liste=<?php echo $arrNomToutesLesListes[$cptListe]['id'];?>" class=" menuListe__lien"
                             style="color: black; text-decoration: none; transition: color 0.3s;"
                             onmouseover="this.style.color='black';" onmouseout="this.style.color='black';">
                             <?php echo $arrNomToutesLesListes[$cptListe]['nom']; ?></a>
@@ -300,8 +312,6 @@ $pdoConnexionListePrincipale->closeCursor();
                 <?php } ?>
             </ul>
         </nav>
-    </header>
-    <main class="mainListe">
         <div class="itemsDeLaListe divMofification">
         <div class="conteneurTitreListe">
         <h1 style="border-bottom: .7rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>" class="titreNiveau1">
@@ -390,6 +400,20 @@ $pdoConnexionListePrincipale->closeCursor();
 
                     </div>
                     <a class="hyperlien" href="index.php">Annuler</a>
+                     <div class="conteneurBoutons">
+            <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') {
+                // var_dump($strCodeErreur) ?>
+
+                <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
+                <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
+
+            <?php } else {
+                var_dump($strCodeErreur) ?>
+                <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
+                <input class="bouton" type="submit" value="Ajouter" id="btn_ajouter" name="btn_ajouter">
+
+            <?php } ?>
+        </div>
                 </form>
 
             <?php } else { ?>
@@ -398,20 +422,7 @@ $pdoConnexionListePrincipale->closeCursor();
                 </p>
             <?php } ?>
         </div>
-        <div class="conteneurBoutons">
-            <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') {
-                // var_dump($strCodeErreur) ?>
 
-                <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
-                <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
-
-            <?php } else {
-                // var_dump($strCodeErreur) ?>
-                <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
-                <input class="bouton" type="submit" value="Ajouter" id="btn_ajouter" name="btn_ajouter">
-
-            <?php } ?>
-        </div>
         <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
     </main>
     <?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
