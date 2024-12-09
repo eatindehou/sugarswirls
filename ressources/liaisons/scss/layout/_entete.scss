@@ -5,7 +5,27 @@ background-color: $blanc;
 padding-top: 3em;
 padding-bottom: 2em;
 display: flex;
-flex-direction: row;
-justify-content: space-between;
-}
+flex-direction: column;
 
+margin: 0 auto;
+text-align: center;
+
+@media(min-width: $desktop){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.profile{
+    width: 25%;
+    height: 25%;
+    margin: 0 auto;
+    text-align: center;
+
+    @media(min-width: $desktop){
+        width: 10%;
+        height: 10%;
+        margin: 0;
+      }
+}
+}

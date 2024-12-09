@@ -68,6 +68,9 @@ width: 200px;
 &__lien{
 color: $blanc;
 text-decoration: none;
+text-shadow: 
+                 1px -1px 0 #444,
+                  1px 1px 0 #444;
 }
 
 &__lien:hover{

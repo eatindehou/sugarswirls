@@ -860,6 +860,7 @@ label[for=nom_item] {
 .liste__lien {
   color: #FFF;
   text-decoration: none;
+  text-shadow: 1px -1px 0 #444, 1px 1px 0 #444;
 }
 .liste__lien:hover {
   text-decoration: underline;
@@ -929,15 +930,56 @@ main {
   padding-top: 3em;
   padding-bottom: 2em;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (min-width: 601px) {
+  .entete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.entete .profile {
+  width: 25%;
+  height: 25%;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (min-width: 601px) {
+  .entete .profile {
+    width: 10%;
+    height: 10%;
+    margin: 0;
+  }
 }
 
 .piedDePage {
   background-color: #FFF;
-}
-.piedDePage__copyRights {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin-top: 2em;
+}
+@media (min-width: 601px) {
+  .piedDePage {
+    max-width: 25%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+.piedDePage .profile {
+  width: 25%;
+  margin: 2em auto;
+  text-align: center;
+}
+@media (min-width: 601px) {
+  .piedDePage .profile {
+    margin: 0 auto;
+  }
 }
 
 /**
