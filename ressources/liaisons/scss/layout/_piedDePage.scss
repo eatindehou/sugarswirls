@@ -2,7 +2,27 @@
 
 .piedDePage{
   background-color: $blanc;
-  &__copyRights{
-    text-align: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin-top: 2em;
+
+  @media(min-width: $desktop){
+    max-width: 25%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
+
+.profile{
+  width: 25%;
+  margin: 2em auto;
+  text-align: center;
+
+  @media(min-width: $desktop){
+    margin: 0 auto;
+  }
+}
+
 }

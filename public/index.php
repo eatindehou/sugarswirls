@@ -182,7 +182,7 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>
 			<form method="GET">
 			<input type="hidden" name="id_liste" value="<?php echo $arrListes[$cpt]["id"]; ?>">
-			<input type="submit" class="annuler" name="btn_suppression" value="Supprimer"><img src="<?php echo $niveau;?>liaisons/svg/poubelle.svg" alt="">
+			<input type="submit" class="annuler" name="btn_suppression" value="Supprimer">
 			</form>
 			</li>
 			</a>
