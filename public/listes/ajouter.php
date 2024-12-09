@@ -4,26 +4,35 @@
 
 <?php
 
+$strMessage = "";
+
 if(isset($_GET['btn_ajouter'])){
 	$strCodeOperation = "ajouter";
 }
 else{
     $strCodeOperation = "";
 }
+if(isset($_GET['couleur_id']) && isset($_GET['nom'])){
 
-if($strCodeOperation == "ajouter"){
-    $arrListes=array();
+    if($strCodeOperation == "ajouter"){
+        $arrListes=array();
 
-		$arrListes['nom']= $_GET['nom'];
-		$arrListes['id']= "";
-		$arrListes['couleur_id']= $_GET['couleur_id'];
-        $arrListes['utilisateur_id']= "1";
+            $arrListes['nom']= $_GET['nom'];
+            $arrListes['couleur_id']= $_GET['couleur_id'];
+            $arrListes['utilisateur_id']= "1";
 
-    $strRequeteAjout = "INSERT INTO listes (nom, couleur_id, utilisateur_id) VALUES ('". $arrListes['nom']. "','" . $arrListes['couleur_id']."','".$arrListes['utilisateur_id']."')";
-var_dump($strRequeteAjout);
-    $pdosResultat = $objPdo->query($strRequeteAjout);
-    $pdosResultat->closeCursor();
-    header("Location:".$niveau."index.php");
+        
+
+            $strRequeteAjout = "INSERT INTO listes (nom, couleur_id, utilisateur_id) VALUES ('". $arrListes['nom']. "','" . $arrListes['couleur_id']."','".$arrListes['utilisateur_id']."')";
+            $pdosResultat = $objPdo->query($strRequeteAjout);
+            $pdosResultat->closeCursor();
+            header("Location:".$niveau."index.php");
+    }
+}
+else{
+    if(!isset($_GET['btn_nouveau'])){
+        $strMessage = "Erreur! Veuillez remplir tous les champs.";
+    }
 }
 
 
@@ -72,7 +81,6 @@ var_dump($strRequeteAjout);
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
     <title>Ajout</title>
 	<?php include ($niveau . "liaisons/fragments/headlinks.inc.php");?>
 </head>
@@ -83,7 +91,7 @@ var_dump($strRequeteAjout);
 <br>
 <form action="<?php echo $niveau ?>listes/ajouter.php" class="bloc" method="GET">
    
-  
+        <p class="error"><?php echo $strMessage; ?></p>
         <h2><label for="nom">Nom de la liste:</label></h2>
         <input type="text" size="50" id="nom" name="nom" value="">
   

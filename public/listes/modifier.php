@@ -14,7 +14,7 @@ else{
 }
 
 if(isset($_GET['btn_modifier'])){
-    var_dump("allo");
+    if(isset($_GET['couleur_id'])){
     $arrListes['nom']=$_GET['nom'];
     $arrListes['id']=$_GET['id_liste'];
     $arrListes['couleur_id']=$_GET['couleur_id'];
@@ -26,11 +26,16 @@ if(isset($_GET['btn_modifier'])){
                 "' WHERE id=".$arrListes['id'];
 
                 $pdosResultat = $objPdo->query($strRequete);
-                $strCodeErreur = $objPdo->errorCode();
 
     header("Location:".$niveau."index.php");
+    }
+    else{
+            $strMessage = "Erreur! Veuillez remplir tous les champs.";
+    }
 }
 else{
+    $strMessage = ""; 
+
     $strRequete = "SELECT id, nom, couleur_id FROM listes WHERE id=".$id_liste. " ORDER BY nom ";
 
 	$pdosResultatListe = $objPdo->prepare($strRequete);
@@ -120,7 +125,6 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
     <title>Modification</title>
 	<?php include ($niveau . "liaisons/fragments/headlinks.inc.php");?>
 </head>
@@ -130,6 +134,7 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
     <br><br>
 <form action="<?php echo $niveau ?>listes/modifier.php" class="bloc" method="GET">
 	
+        <p class="error"><?php echo $strMessage; ?></p>
         <h2><label for="nom">Nom de la liste:</label></h2>
         <input type="text" size="50" id="nom" name="nom" value="<?php echo $arrListes[0]['nom']; ?>">
         <input type="hidden" id="liste" name="id_liste" value="<?php echo $arrListes[0]['id']; ?>">     
@@ -147,7 +152,7 @@ $strRequete = "SELECT id, nom_fr, hexadecimal FROM couleurs ORDER BY nom_fr";
         <?php  } ?>
 	</section>
 	
-	<br>
+	        <br>
         	<input type="submit" value="Enregistrer" class="bouton" name="btn_modifier">
             <a class="bouton__annuler" href="<?php echo $niveau ?>index.php">Annuler <img src="<?php echo $niveau;?>liaisons/svg/cancel.svg" alt=""></a><br>
 	</form>
