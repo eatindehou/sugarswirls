@@ -20,11 +20,20 @@ if (isset($_GET['id_liste']) == false) {
 	$strRequete = 'SELECT id, nom, echeance, est_complete FROM items ORDER BY echeance DESC';
 } else {
 	$strChampIdListe = $_GET['id_liste'];
-	$strRequete = 'SELECT id, nom, echeance, est_complete FROM items WHERE liste_id=' . $strChampIdListe;
+	$strRequeteListe = 'SELECT id, nom, echeance, est_complete FROM items WHERE liste_id=' . $strChampIdListe;
 }
-if (isset($_GET['btn_completion']) && isset($_GET['id'])) {
-	$arrCompletion = array();
+if (isset($_GET['btn_completion']) && isset($_GET['id_liste'])) {
 	$idItemUnique = $_GET['id'];
+	$pdosResultat = $objPdo->prepare($strRequeteListe);
+	$pdosResultat->execute();
+	$arrCompletion = array();
+	$ligne = $pdosResultat->fetch();
+	$arrCompletion['id'] = $ligne['id'];
+	$arrCompletion['nom'] = $ligne['nom'];
+	$arrCompletion['echeance'] = $ligne['echeance'];
+	$arrCompletion['completion'] = $ligne['echeance'];
+	$pdosResultat->closeCursor();
+
 	$arrCompletion[$idItemUnique]['completion'] = $_GET['btn_completion'];
 
 	if ($arrCompletion[$idItemUnique]['completion'] == 1) {
@@ -77,12 +86,7 @@ for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
 
 		// echo $formatDate[$cpt];
 	}
-	// $strFormat = "M";
-	// var_dump(date(	$strFormat));
 
-	// $strFormat = "d";
-	// $arrLis = date($strFormat);
-	// var_dump($arrListe[$cpt]['jour']);
 
 }
 
@@ -156,8 +160,10 @@ $pdoConnexionToutesLesListes->closeCursor();
 			<li class="conteneurTitreListe">
 				<h1 style="border-bottom: .7rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>"
 					class="titreNiveau1">
-					<?php echo $arrNomListe['nom'] ?></h1>
-				<a class="hyperlien ajoutListe textePetiteTaille"href="modifier.php?id_liste=<?php echo $strChampIdListe; ?>&btn_nouveau=nouveau&nom_liste=<?php echo $arrNomListe["nom"]; ?>">Ajouter
+					<?php echo $arrNomListe['nom'] ?>
+				</h1>
+				<a class="hyperlien ajoutListe textePetiteTaille"
+					href="modifier.php?id_liste=<?php echo $strChampIdListe; ?>&btn_nouveau=nouveau&nom_liste=<?php echo $arrNomListe["nom"]; ?>">Ajouter
 					un item
 				</a>
 			</li>
@@ -191,27 +197,28 @@ $pdoConnexionToutesLesListes->closeCursor();
 					<?php } ?>
 
 					<div class="conteneurBtnEditon">
-
 						<form action="index.php" method="GET">
 
 							<?php if ($arrListe[$cpt]['est_complete'] == 0) { ?>
-								<input type="hidden" name="id" value="<?php echo $arrListe[$cpt]["id"]; ?>">
+								<input type="hidden" name="id_liste" value="<?php echo $strChampIdListe; ?>">
+								<input type="hidden" name="id" value="<?php echo $arrListe[$cpt]['id'] ?>">
 								<button type="submit" name="btn_completion"
 									value="<?php echo $arrListe[$cpt]['est_complete']; ?>"><svg width="24" height="24"
 										viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<circle cx="12" cy="12" r="11" fill="none" stroke="#1B1B1B" stroke-width="2" />
+										<circle class="iconeNonCheck" cx="12" cy="12" r="11" fill="none" stroke="#1B1B1B" stroke-width="2" />
 									</svg>
 								</button>
 
 							<?php } else if ($arrListe[$cpt]['est_complete'] == 1) { ?>
-									<input type="hidden" name="id" value="<?php echo $arrListe[$cpt]["id"]; ?>">
+									<input type="hidden" name="id_liste" value="<?php echo $strChampIdListe; ?>">
+									<input type="hidden" name="id" value="<?php echo $arrListe[$cpt]['id']?>">
 									<button type="submit" name="btn_completion"
 										value="<?php echo $arrListe[$cpt]['est_complete']; ?>">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+										<svg class="iconeCheck" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
 											fill="none">
 											<path
 												d="M15.264 8.398L10.116 13.558L8.136 11.578C8.02843 11.4524 7.89605 11.3504 7.74717 11.2783C7.59829 11.2063 7.43613 11.1658 7.27087 11.1594C7.10561 11.1531 6.94081 11.1809 6.78682 11.2412C6.63283 11.3016 6.49297 11.3931 6.37602 11.51C6.25908 11.627 6.16757 11.7668 6.10724 11.9208C6.04691 12.0748 6.01906 12.2396 6.02545 12.4049C6.03183 12.5701 6.07231 12.7323 6.14433 12.8812C6.21636 13.03 6.31839 13.1624 6.444 13.27L9.264 16.102C9.37613 16.2132 9.50911 16.3012 9.65532 16.3609C9.80152 16.4206 9.95808 16.4509 10.116 16.45C10.4308 16.4487 10.7325 16.3237 10.956 16.102L16.956 10.102C17.0685 9.99044 17.1578 9.85772 17.2187 9.71149C17.2796 9.56526 17.311 9.40841 17.311 9.25C17.311 9.09158 17.2796 8.93474 17.2187 8.78851C17.1578 8.64227 17.0685 8.50955 16.956 8.398C16.7312 8.1745 16.427 8.04905 16.11 8.04905C15.793 8.04905 15.4888 8.1745 15.264 8.398ZM12 0.25C9.62663 0.25 7.30655 0.953788 5.33316 2.27236C3.35977 3.59094 1.8217 5.46508 0.913451 7.6578C0.00519941 9.85051 -0.232441 12.2633 0.230582 14.5911C0.693605 16.9189 1.83649 19.057 3.51472 20.7353C5.19295 22.4135 7.33115 23.5564 9.65892 24.0194C11.9867 24.4824 14.3995 24.2448 16.5922 23.3365C18.7849 22.4283 20.6591 20.8902 21.9776 18.9168C23.2962 16.9434 24 14.6234 24 12.25C24 10.6741 23.6896 9.1137 23.0866 7.6578C22.4835 6.20189 21.5996 4.87902 20.4853 3.76472C19.371 2.65042 18.0481 1.7665 16.5922 1.16345C15.1363 0.560389 13.5759 0.25 12 0.25V0.25ZM12 21.85C10.1013 21.85 8.24524 21.287 6.66653 20.2321C5.08782 19.1772 3.85736 17.6779 3.13076 15.9238C2.40416 14.1696 2.21405 12.2393 2.58447 10.3771C2.95488 8.51491 3.8692 6.80436 5.21178 5.46177C6.55436 4.11919 8.26492 3.20488 10.1271 2.83446C11.9894 2.46404 13.9196 2.65415 15.6738 3.38076C17.4279 4.10736 18.9272 5.33781 19.9821 6.91652C21.037 8.49524 21.6 10.3513 21.6 12.25C21.6 14.7961 20.5886 17.2379 18.7882 19.0382C16.9879 20.8386 14.5461 21.85 12 21.85V21.85Z"
-												fill="#1B1B1B" />
+												fill="#C07307" />
 										</svg></button>
 							<?php } ?>
 						</form>
@@ -219,16 +226,16 @@ $pdoConnexionToutesLesListes->closeCursor();
 						<?php if ($arrListe[$cpt]['echeance'] == NULL) { ?>
 							<a
 								href='modifier.php?id_liste=<?php echo urlencode($arrNomListe["id"]); ?>&id_item=<?php echo urlencode($arrListe[$cpt]["id"]); ?>&nom_item=<?php echo urlencode($arrListe[$cpt]["nom"]); ?>&echeance=NULL&jour=NULL&mois=NULL; ?>&completion=<?php echo urlencode($arrListe[$cpt]["est_complete"]); ?>&annee=NULL'>
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path
+								<svg xmlns="" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path class="iconeModif";
 										d="M3.6 19.2014H8.688C8.84593 19.2023 9.00248 19.172 9.14869 19.1123C9.29489 19.0526 9.42787 18.9647 9.54 18.8535L17.844 10.5399L21.252 7.20487C21.3645 7.09335 21.4537 6.96066 21.5147 6.81447C21.5756 6.66829 21.607 6.51148 21.607 6.35312C21.607 6.19475 21.5756 6.03795 21.5147 5.89176C21.4537 5.74557 21.3645 5.61289 21.252 5.50136L16.164 0.354855C16.0524 0.242414 15.9197 0.153166 15.7735 0.0922616C15.6273 0.0313568 15.4704 0 15.312 0C15.1536 0 14.9967 0.0313568 14.8505 0.0922616C14.7043 0.153166 14.5716 0.242414 14.46 0.354855L11.076 3.74987L2.748 12.0635C2.63678 12.1756 2.54879 12.3085 2.48907 12.4547C2.42936 12.6008 2.39909 12.7573 2.4 12.9152V18.0017C2.4 18.3199 2.52643 18.625 2.75147 18.85C2.97652 19.075 3.28174 19.2014 3.6 19.2014ZM15.312 2.89812L18.708 6.29313L17.004 7.99664L13.608 4.60162L15.312 2.89812ZM4.8 13.4071L11.916 6.29313L15.312 9.68815L8.196 16.8021H4.8V13.4071ZM22.8 21.6007H1.2C0.88174 21.6007 0.576515 21.7271 0.351472 21.9521C0.126428 22.177 0 22.4822 0 22.8003C0 23.1185 0.126428 23.4237 0.351472 23.6486C0.576515 23.8736 0.88174 24 1.2 24H22.8C23.1183 24 23.4235 23.8736 23.6485 23.6486C23.8736 23.4237 24 23.1185 24 22.8003C24 22.4822 23.8736 22.177 23.6485 21.9521C23.4235 21.7271 23.1183 21.6007 22.8 21.6007Z"
 										fill="#1B1B1B" />
 								</svg></a>
 						<?php } else { ?>
 							<a
 								href='modifier.php?id_liste=<?php echo urlencode($arrNomListe["id"]); ?>&id_item=<?php echo urlencode($arrListe[$cpt]["id"]); ?>&nom_item=<?php echo urlencode($arrListe[$cpt]["nom"]); ?>&echeance=<?php echo urlencode($arrListe[$cpt]["echeance"]); ?>&jour=<?php echo urlencode($arrListe[$cpt]['jour']); ?>&mois=<?php echo urlencode($arrListe[$cpt]['mois']); ?>&completion=<?php echo urlencode($arrListe[$cpt]["est_complete"]); ?>&annee=<?php echo urlencode($arrListe[$cpt]['annee']); ?>'>
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-									<path
+								<svg xmlns="" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path class="iconeModif"
 										d="M3.6 19.2014H8.688C8.84593 19.2023 9.00248 19.172 9.14869 19.1123C9.29489 19.0526 9.42787 18.9647 9.54 18.8535L17.844 10.5399L21.252 7.20487C21.3645 7.09335 21.4537 6.96066 21.5147 6.81447C21.5756 6.66829 21.607 6.51148 21.607 6.35312C21.607 6.19475 21.5756 6.03795 21.5147 5.89176C21.4537 5.74557 21.3645 5.61289 21.252 5.50136L16.164 0.354855C16.0524 0.242414 15.9197 0.153166 15.7735 0.0922616C15.6273 0.0313568 15.4704 0 15.312 0C15.1536 0 14.9967 0.0313568 14.8505 0.0922616C14.7043 0.153166 14.5716 0.242414 14.46 0.354855L11.076 3.74987L2.748 12.0635C2.63678 12.1756 2.54879 12.3085 2.48907 12.4547C2.42936 12.6008 2.39909 12.7573 2.4 12.9152V18.0017C2.4 18.3199 2.52643 18.625 2.75147 18.85C2.97652 19.075 3.28174 19.2014 3.6 19.2014ZM15.312 2.89812L18.708 6.29313L17.004 7.99664L13.608 4.60162L15.312 2.89812ZM4.8 13.4071L11.916 6.29313L15.312 9.68815L8.196 16.8021H4.8V13.4071ZM22.8 21.6007H1.2C0.88174 21.6007 0.576515 21.7271 0.351472 21.9521C0.126428 22.177 0 22.4822 0 22.8003C0 23.1185 0.126428 23.4237 0.351472 23.6486C0.576515 23.8736 0.88174 24 1.2 24H22.8C23.1183 24 23.4235 23.8736 23.6485 23.6486C23.8736 23.4237 24 23.1185 24 22.8003C24 22.4822 23.8736 22.177 23.6485 21.9521C23.4235 21.7271 23.1183 21.6007 22.8 21.6007Z"
 										fill="#1B1B1B" />
 								</svg></a>
@@ -238,7 +245,7 @@ $pdoConnexionToutesLesListes->closeCursor();
 							<button type="submit" name="btn_suppressionItem" value="btn_suppressionItem"><svg
 									xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"
 									fill="none">
-									<path
+									<path class="iconePoubelle"
 										d="M9.33333 21.2677C9.68696 21.2677 10.0261 21.1276 10.2761 20.8784C10.5262 20.6291 10.6667 20.291 10.6667 19.9385V11.9631C10.6667 11.6105 10.5262 11.2724 10.2761 11.0232C10.0261 10.7739 9.68696 10.6338 9.33333 10.6338C8.97971 10.6338 8.64057 10.7739 8.39052 11.0232C8.14048 11.2724 8 11.6105 8 11.9631V19.9385C8 20.291 8.14048 20.6291 8.39052 20.8784C8.64057 21.1276 8.97971 21.2677 9.33333 21.2677ZM22.6667 5.31692H17.3333V3.98769C17.3333 2.93009 16.9119 1.91581 16.1618 1.16797C15.4116 0.420131 14.3942 0 13.3333 0H10.6667C9.6058 0 8.58838 0.420131 7.83824 1.16797C7.08809 1.91581 6.66667 2.93009 6.66667 3.98769V5.31692H1.33333C0.979711 5.31692 0.640573 5.45697 0.390524 5.70625C0.140476 5.95553 0 6.29362 0 6.64615C0 6.99869 0.140476 7.33678 0.390524 7.58606C0.640573 7.83534 0.979711 7.97538 1.33333 7.97538H2.66667V22.5969C2.66667 23.6545 3.08809 24.6688 3.83824 25.4166C4.58839 26.1645 5.6058 26.5846 6.66667 26.5846H17.3333C18.3942 26.5846 19.4116 26.1645 20.1618 25.4166C20.9119 24.6688 21.3333 23.6545 21.3333 22.5969V7.97538H22.6667C23.0203 7.97538 23.3594 7.83534 23.6095 7.58606C23.8595 7.33678 24 6.99869 24 6.64615C24 6.29362 23.8595 5.95553 23.6095 5.70625C23.3594 5.45697 23.0203 5.31692 22.6667 5.31692ZM9.33333 3.98769C9.33333 3.63516 9.47381 3.29706 9.72386 3.04778C9.97391 2.79851 10.313 2.65846 10.6667 2.65846H13.3333C13.687 2.65846 14.0261 2.79851 14.2761 3.04778C14.5262 3.29706 14.6667 3.63516 14.6667 3.98769V5.31692H9.33333V3.98769ZM18.6667 22.5969C18.6667 22.9495 18.5262 23.2876 18.2761 23.5368C18.0261 23.7861 17.687 23.9262 17.3333 23.9262H6.66667C6.31305 23.9262 5.97391 23.7861 5.72386 23.5368C5.47381 23.2876 5.33333 22.9495 5.33333 22.5969V7.97538H18.6667V22.5969ZM14.6667 21.2677C15.0203 21.2677 15.3594 21.1276 15.6095 20.8784C15.8595 20.6291 16 20.291 16 19.9385V11.9631C16 11.6105 15.8595 11.2724 15.6095 11.0232C15.3594 10.7739 15.0203 10.6338 14.6667 10.6338C14.313 10.6338 13.9739 10.7739 13.7239 11.0232C13.4738 11.2724 13.3333 11.6105 13.3333 11.9631V19.9385C13.3333 20.291 13.4738 20.6291 13.7239 20.8784C13.9739 21.1276 14.313 21.2677 14.6667 21.2677Z"
 										fill="#1B1B1B" />
 								</svg></button>
