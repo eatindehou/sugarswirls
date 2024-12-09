@@ -285,14 +285,13 @@ $pdoConnexionListePrincipale->closeCursor();
 </head>
 
 <body>
-    <header class="entetePage">
         <?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
-    </header>
     <main class="mainListe">
-        <br action="index.php" action="GET">
+        <br>
         <div class="pAutreTaches">
             <a class="textegGrandeTaille">Mes autres tâches</a>
-            <a href="<?php echo $niveau;?>listes/ajouter.php" class="texteMoyenneTaille ajoutListePrincipale hyperlien">Ajouter une liste
+            <a href="<?php echo $niveau; ?>listes/ajouter.php"
+                class="texteMoyenneTaille ajoutListePrincipale hyperlien">Ajouter une liste
             </a>
         </div>
         <nav class="menuListe">
@@ -303,8 +302,8 @@ $pdoConnexionListePrincipale->closeCursor();
                         onmouseout="this.style.borderLeftColor='black';"
                         onfocus="this.style.borderTop = '0.4rem solid <?php echo "#" . $arrNomToutesLesListes[$cptListe]["couleurs"] ?>' ;this.style.borderLeft = '0.4rem solid <?php echo "#" . $arrNomToutesLesListes[$cptListe]["couleurs"]; ?>' ;"
                         onblur="this.style.borderTop = '0';" tabindex="0">
-                        <a href="index.php?id_liste=<?php echo $arrNomToutesLesListes[$cptListe]['id'];?>" class=" menuListe__lien"
-                            style="color: black; text-decoration: none; transition: color 0.3s;"
+                        <a href="index.php?id_liste=<?php echo $arrNomToutesLesListes[$cptListe]['id']; ?>"
+                            class=" menuListe__lien" style="color: black; text-decoration: none; transition: color 0.3s;"
                             onmouseover="this.style.color='black';" onmouseout="this.style.color='black';">
                             <?php echo $arrNomToutesLesListes[$cptListe]['nom']; ?></a>
                     </li>
@@ -312,13 +311,14 @@ $pdoConnexionListePrincipale->closeCursor();
             </ul>
         </nav>
         <div class="itemsDeLaListe divMofification">
-        <div class="conteneurTitreListe">
-        <h1 style="border-bottom: .7rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>" class="titreNiveau1">
-                <?php echo $strEnteteH1; ?>
-            </h1>
-				<a class="hyperlien ajoutListe" href="modifier.php?id_liste=<?php echo $idListePrincipale; ?>&btn_nouveau=nouveau" class="textePetiteTaille">Ajouter un item
-				</a>
-			</div>
+            <div class="conteneurTitreListe">
+                <h1 style="border-bottom: .7rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>"
+                    class="titreNiveau1">
+                    <?php echo $strEnteteH1; ?>
+                </h1>
+                <a class="hyperlien ajoutListe" href="modifier.php?id_liste=<?php echo $idListePrincipale; ?>&btn_nouveau=nouveau">Ajouter un item
+                </a>
+            </div>
             <?php if (($strCodeErreur !== "00000" && $strCodeErreur !== "-1") || $strCodeOperation != "modifier" && $strCodeOperation != "ajouter" && $strCodeOperation != "supprimer") { ?>
                 <form class="formulireModifAjout" action="modifier.php" method="GET">
                     <div>
@@ -348,7 +348,6 @@ $pdoConnexionListePrincipale->closeCursor();
                     </div>
                     <div class="ajoutEcheance">
                         <?php ?>
-                        <label hidden for="echeance">Échéance :</label>
                         <select class="selectionDate" name="mois" id="mois">
                             <option value="0"></option>
                             <?php for ($cpt = 1; $cpt <= 12; $cpt++) { ?>
@@ -399,19 +398,19 @@ $pdoConnexionListePrincipale->closeCursor();
 
                     </div>
                     <a class="hyperlien" href="index.php">Annuler</a><br><br>
-                            <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
-                     <div class="conteneurBoutons">
-            <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') { ?>
+                    <a class="hyperlien lienConsulter" href="index.php">Consulter toutes mes listes</a>
+                    <div class="conteneurBoutons">
+                        <?php if ($strCodeOperation == 'afficher' || $strCodeOperation == 'modifier') { ?>
 
-                <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
-                <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
+                            <input class="bouton" type="submit" value="Éditer l'item" name="btn_modifier">
+                            <input class="bouton" type="submit" value="Supprimer" name="btn_supprimer">
 
-            <?php } else { ?>
-                <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
-                <input class="bouton" type="submit" value="Ajouter" id="btn_ajouter" name="btn_ajouter">
+                        <?php } else { ?>
+                            <input type="hidden" name="id_liste" value="<?php echo $idListePrincipale ?>">
+                            <input class="bouton" type="submit" value="Ajouter" id="btn_ajouter" name="btn_ajouter">
 
-            <?php } ?>
-        </div>
+                        <?php } ?>
+                    </div>
                 </form>
 
             <?php } else { ?>
@@ -422,7 +421,7 @@ $pdoConnexionListePrincipale->closeCursor();
         </div>
 
     </main>
-    <?php include ($niveau . "liaisons/fragments/piedDePage.inc.php");?>
+    <?php include($niveau . "liaisons/fragments/piedDePage.inc.php"); ?>
 
     <script src="<?php echo $niveau; ?>liaisons/js/ajout_echeance.js"></script>
 </body>

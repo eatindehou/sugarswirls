@@ -73,9 +73,9 @@ for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
 	if ($arrListe[$cpt]['echeance'] != NULL) {
 		$strDate[$cpt] = $arrListe[$cpt]['echeance'];
 		$timestamp[$cpt] = strtotime($strDate[$cpt]);
-		$formatDate[$cpt]= date(' M d  ', $timestamp[$cpt]);
+		$formatDate[$cpt] = date(' M d  ', $timestamp[$cpt]);
 
-		echo $formatDate[$cpt];
+		// echo $formatDate[$cpt];
 	}
 	// $strFormat = "M";
 	// var_dump(date(	$strFormat));
@@ -127,11 +127,9 @@ $pdoConnexionToutesLesListes->closeCursor();
 </head>
 
 <body>
-	<header class=" entetePage">
-		<?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
-	</header>
+	<?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
 	<main class=" mainListe">
-		<br action="index.php" action="GET">
+		<br>
 		<div class="pAutreTaches">
 			<p class="textegGrandeTaille">Mes autres tâches</p>
 			<a href="<?php echo $niveau; ?>listes/ajouter.php"
@@ -155,16 +153,14 @@ $pdoConnexionToutesLesListes->closeCursor();
 			</ul>
 		</nav>
 		<ul class="itemsDeLaListe">
-			<div class="conteneurTitreListe">
+			<li class="conteneurTitreListe">
 				<h1 style="border-bottom: .7rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>"
 					class="titreNiveau1">
-					<?php echo $arrNomListe['nom'] ?>
-				</h1>
-				<a class="hyperlien ajoutListe"
-					href="modifier.php?id_liste=<?php echo $strChampIdListe;?>&btn_nouveau=nouveau&nom_liste=<?php echo $arrNomListe["nom"];?>"
-					class="textePetiteTaille">Ajouter un item
+					<?php echo $arrNomListe['nom'] ?></h1>
+				<a class="hyperlien ajoutListe textePetiteTaille"href="modifier.php?id_liste=<?php echo $strChampIdListe; ?>&btn_nouveau=nouveau&nom_liste=<?php echo $arrNomListe["nom"]; ?>">Ajouter
+					un item
 				</a>
-			</div>
+			</li>
 			<?php for ($cpt = 0; $cpt < count($arrListe); $cpt++) { ?>
 				<li style="border-top: .5rem solid <?php echo "#" . $arrNomListe["couleurs"]; ?>"
 					class="itemsDeLaListe__item">
@@ -193,7 +189,7 @@ $pdoConnexionToutesLesListes->closeCursor();
 							Echeance :<?php echo $formatDate[$cpt] ?>
 						</p>
 					<?php } ?>
-					</p>
+
 					<div class="conteneurBtnEditon">
 
 						<form action="index.php" method="GET">
@@ -247,27 +243,24 @@ $pdoConnexionToutesLesListes->closeCursor();
 										fill="#1B1B1B" />
 								</svg></button>
 						</form>
+
 					</div>
 
 				</li>
 			<?php } ?>
+			<li><a class="hyperlien lienRetour" href="<?php echo $niveau; ?>index.php">Retour temporaire</a></li>
 		</ul>
-		<a class="hyperlien lienRetour" href="<?php echo $niveau; ?>index.php">Retour temporaire</a>
-	</main>
-	<div class="conteneurBoutons">
-		<form class="formNouveau" action="modifier.php" method="GET">
-			<input type="hidden" name="id_liste" value="<?php echo  ($arrNomListe["id"]);?>">
-			<input type="hidden" name="nom_liste" value="<?php echo ($arrNomListe["nom"]);?>">
-			<input class="bouton btn_nouveau" type="submit" name="btn_nouveau" value="nouveau">
-		</form>
-		</form>
-		<form action="index.php" method="GET">
-			<input class="bouton" type="submit" name="btn_suppression" value="suppression">
-		</form>
-	</div>
+		<div class="conteneurBoutons">
+			<form class="formNouveau" action="modifier.php" method="GET">
+				<input type="hidden" name="id_liste" value="<?php echo ($arrNomListe["id"]); ?>">
+				<input type="hidden" name="nom_liste" value="<?php echo ($arrNomListe["nom"]); ?>">
+				<input class="bouton btn_nouveau" type="submit" name="btn_nouveau" value="nouveau">
+				<input class="bouton" type="submit" name="btn_suppression" value="suppression">
+			</form>
+		</div>
 	</main>
 
-
+	<?php include($niveau . "liaisons/fragments/piedDePage.inc.php"); ?>
 </body>
 
 </html>

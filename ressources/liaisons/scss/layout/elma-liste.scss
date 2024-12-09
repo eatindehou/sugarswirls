@@ -98,7 +98,7 @@ outline: none;
 // MAIN CONTENU PRINCIPAL
 .mainListe {
     width: 100%;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
 }
 
 /*** LISTES ****/
@@ -118,7 +118,9 @@ outline: none;
 // TEXTE DE TAILLE MOYENNE
 
 // LI
-
+.itemsDeLaListe li {
+    list-style: none;
+}
 .itemsDeLaListe__item {
     position: relative;
     list-style: none;
@@ -165,8 +167,7 @@ button {
 .divMofification {
     height: 110vh;
     padding-left: 7rem;
-    display: flex;
-    flex-direction: column;
+
 }
 
 input[type="text"], .selectionDate {
@@ -207,7 +208,7 @@ input[type="text"], .selectionDate {
 }
 
 // BOUTONS
-.conteneurBoutons {
+.lienConsulter +.conteneurBoutons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -216,14 +217,22 @@ input[type="text"], .selectionDate {
     margin: 5rem auto 0 auto;
 }
 
-input[name="btn_modifier"],input[name="btn_nouveau"] {
+input[name="btn_modifier"],input[name="btn_nouveau"],input[name="btn_ajouter"] {
     margin-right: 4rem;
-    width: 100%;
+    width: 60%;
+
+}
+input[name="btn_ajouter"] {
+    margin-top: 4rem;
 
 }
 .formNouveau{
-    margin-right: 4rem;
-    width: 50%;
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 // RADIO RAPPELS
