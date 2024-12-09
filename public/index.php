@@ -1,6 +1,8 @@
 
 <?php $niveau="./";?>
-<?php include ($niveau . "liaisons/php/config.inc.php");?>
+<?php include ($niveau . "liaisons/php/config.inc.php");
+$strFichierTexte = file_get_contents($niveau . 'liaisons/js/messages-erreur.json');
+$jsonMessagesErreur = json_decode($strFichierTexte); ?>
 
 
 <?php
@@ -102,6 +104,9 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 
 <!DOCTYPE html>
 <html lang="fr">
+<?php if (isset($_GET["strCodeOperation"])) {
+	echo $jsonMessagesErreur->{$_GET["strCodeOperation"]};
+} ?>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
@@ -171,7 +176,7 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 
 		<ul class="listes">
 		<?php for($cpt=0;$cpt<count($arrListes);$cpt++){?>
-			<a class="liste__lien" href="<?php echo $niveau ?>items/afficher.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">
+			<a class="liste__lien" href="<?php echo $niveau ?>items/index.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">
 			<li class="liste" style="border-left: 5px solid <?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;">
 			<h3 class="liste__titre" style="background-color:<?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;"><?php echo $arrListes[$cpt]["nom"];?></h3>
 			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>

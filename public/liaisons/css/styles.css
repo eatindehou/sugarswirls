@@ -513,6 +513,13 @@ body {
 }
 .titreNiveau1 {
   font-family: PlayfairBLack;
+  font-size: 4.3rem;
+  max-width: 27rem;
+}
+@media (min-width: 601px) {
+  .titreNiveau1 {
+    max-width: 70%;
+  }
 }
 
 .titreNiveau2 {
@@ -529,65 +536,44 @@ body {
 
 .textegGrandeTaille {
   font-family: ArimaBold;
-}
-
-.texteMoyenneTaille {
-  font-family: ArimaSemiBold;
-}
-
-h1,
-.titreNiveau1 {
-  text-align: center;
-  font-size: 28px;
-  font-size: 2.8rem;
-  margin: 0;
-}
-h1--desktop,
-.titreNiveau1--desktop {
-  font-size: 48px;
-  font-size: 4.8rem;
-  padding-bottom: 15px;
-  position: relative;
-}
-h1--desktop:after,
-.titreNiveau1--desktop:after {
-  content: "";
-  display: inline-block;
-  width: 150px;
-  height: 8px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
-h2,
-.titreNiveau2 {
-  text-align: center;
-  font-size: 20px;
-  font-size: 2rem;
-  text-transform: uppercase;
-}
-h2--desktop,
-.titreNiveau2--desktop {
-  font-size: 28px;
-  font-size: 2.8rem;
+  font-size: 2.3rem;
 }
 @media (min-width: 601px) {
-  h2,
-  .titreNiveau2 {
-    text-align: left;
+  .textegGrandeTaille {
+    font-size: 2.8rem;
   }
 }
 
-h3,
-.titreNiveau3 {
-  font-size: 18px;
+.textegGrandeTaille + .texteMoyenneTaille {
+  font-family: ArimaSemiBold;
   font-size: 1.8rem;
+  max-width: 50%;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
 }
-h3--desktop,
-.titreNiveau3--desktop {
-  font-size: 22px;
-  font-size: 2.2rem;
+@media (min-width: 601px) {
+  .textegGrandeTaille + .texteMoyenneTaille {
+    font-size: 2rem;
+  }
+}
+
+.menuListe__lien, .hyperlien {
+  font-family: ArimaRegular;
+  font-size: 1.67rem;
+}
+
+.descriptionItems + p + p {
+  color: #929292;
+}
+
+label[for=nom_item] {
+  font-size: 1.7rem;
+}
+@media (min-width: 601px) {
+  label[for=nom_item] {
+    font-size: 2rem;
+  }
 }
 
 .texte {
@@ -606,20 +592,96 @@ h3--desktop,
 * @todo Compléter selon l'énoncé de l'exercice
 */
 .hyperlien {
-  color: #2678B5;
-  font-size: 48px;
+  position: relative;
+  padding: 1rem;
+  color: black;
   text-decoration: none;
+  border-bottom: 0.3rem solid black;
 }
 .hyperlien:visited {
-  color: rgb(33.5753424658, 106.0273972603, 159.9246575342);
+  color: black;
+  border-bottom: 0.3rem solid #F8B454;
 }
 .hyperlien:hover {
-  color: rgb(20.301369863, 64.1095890411, 96.698630137);
-  text-decoration: underline;
+  border-bottom: 0.3rem solid #F8B454;
+  color: black;
+}
+.hyperlien:hover::before {
+  position: absolute;
+  top: 1rem;
+  left: 8rem;
+  font-size: 2.5rem;
+  content: "➙";
+  color: #F8B454;
 }
 .hyperlien:active {
-  color: #012d61;
-  text-decoration: underline;
+  color: black;
+  border-bottom: 0.3rem solid #F8B454;
+}
+.hyperlien:active::before {
+  position: absolute;
+  top: 1rem;
+  left: 8rem;
+  font-size: 2.5rem;
+  content: "➙";
+  color: #F8B454;
+}
+.hyperlien:focus {
+  outline: none;
+}
+.hyperlien:focus {
+  border-top: 0.3rem solid #F8B454;
+  border-bottom: 0.3rem solid #F8B454;
+  border-left: 0.3rem solid #F8B454;
+  border-right: none;
+}
+.hyperlien:focus::before {
+  position: absolute;
+  top: 1rem;
+  left: 8rem;
+  font-size: 2.5rem;
+  content: "➙";
+  color: #F8B454;
+}
+
+.lienConsulter:hover::before {
+  position: absolute;
+  top: 1rem;
+  left: 23rem;
+  font-size: 3rem;
+  content: "➙";
+  color: #F8B454;
+}
+
+.lienConsulter {
+  margin-top: 20rem;
+}
+
+.ajoutListe:hover::before {
+  position: absolute;
+  top: 0;
+  left: 12.5rem;
+  font-size: 3rem;
+  content: "⊕";
+  color: #F8B454;
+}
+
+.ajoutListePrincipale:hover::before {
+  position: absolute;
+  top: 0;
+  left: 16rem;
+  font-size: 3rem;
+  content: "⊕";
+  color: #F8B454;
+}
+
+.lienRetour:hover::before {
+  position: absolute;
+  top: 0.5rem;
+  left: 16rem;
+  font-size: 3rem;
+  content: "➙";
+  color: #F8B454;
 }
 
 /** Boutons **/
@@ -638,22 +700,40 @@ h3--desktop,
   margin-left: 0.4em;
 }
 .bouton:hover {
-  background-color: #FF9603;
+  background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
 }
-.bouton__annuler {
+.bouton:active {
+  background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
+}
+.bouton:focus {
+  background: linear-gradient(15deg, #f4d9b3 5.65%, #FFA82F 50.17%, #f4d9b3 97.39%);
+  border: 0.3rem solid #F8B454;
+  outline: none;
+}
+
+.bouton__annuler, input[name=btn_supprimer], input[name=btn_suppression] {
   text-decoration: none;
   border-radius: 10px;
   padding: 0.7em 1.2em;
-  background-color: #F1255F;
+  background-color: #f0245e;
   color: #000;
   border: none;
 }
-.bouton__annuler:after {
+.bouton__annuler:after, input[name=btn_supprimer]:after, input[name=btn_suppression]:after {
   margin-left: 0.4em;
 }
-.bouton__annuler:hover {
-  background-color: #A60A36;
+.bouton__annuler:hover, input[name=btn_supprimer]:hover, input[name=btn_suppression]:hover {
+  background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
 }
+.bouton__annuler:active, input[name=btn_supprimer]:active, input[name=btn_suppression]:active {
+  background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
+}
+.bouton__annuler:focus, input[name=btn_supprimer]:focus, input[name=btn_suppression]:focus {
+  background: linear-gradient(15deg, #fd8aab 5.65%, #f0245e 50.17%, #fd8aab 97.39%);
+  border: 0.3rem solid #f0245e;
+  outline: none;
+}
+
 /** Grille 12 colones **/
 /*** Classe conteneur pour le centrage et l'affichage de la grille en arrière-plan ***/
 @media (min-width: 600px) {
@@ -878,6 +958,25 @@ main {
 
 
 /*** ENTETE ****/
+/*** ENTETE DE PAGE ****/
+.pAutreTaches {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (min-width: 601px) {
+  .pAutreTaches {
+    width: 60%;
+  }
+}
+
+.menuListe {
+  width: 96%;
+  margin: 0 auto;
+}
+
 .menuListe__listes {
   display: flex;
   flex-direction: row;
@@ -887,43 +986,250 @@ main {
 .menuListe__items {
   list-style: none;
   padding: 1rem;
-  width: 33.3333333333%;
+  width: 20%;
+  margin: 1rem 1rem 2.5rem 1rem;
+  height: 3rem;
+}
+
+.menuListe__items:focus {
+  outline: none;
 }
 
 .menuListe__lien {
   width: 100%;
   text-decoration: none;
-  border-left: 1rem solid black;
+}
+
+.menuListe__lien:focus {
+  outline: none;
 }
 
 /*** SECTION LISTES ****/
-.ItemsDeLaListe {
+.itemsDeLaListe {
   padding: 1rem;
-  background-color: rgba(255, 122, 197, 0.5);
+  background-color: #ffffff;
   border-radius: 2rem;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0.1rem 0.4rem 1rem 0.4rem #caa269;
 }
 
 .mainListe {
-  margin: 2rem auto;
-  width: 90%;
-  border-radius: 2rem;
+  width: 100%;
 }
 
 /*** LISTES ****/
+.conteneurTitreListe {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.descriptionItems {
+  display: flex;
+  flex-direction: column;
+}
+
 .itemsDeLaListe__item {
+  position: relative;
+  list-style: none;
   background-color: white;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
   border-top: 0.6rem solid black;
   border-radius: 2rem;
+  width: 90%;
+  height: 20rem;
 }
 
-.ItemsDeLaListe__liste {
-  list-style: none;
+.conteneurBtnEditon {
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.itemsDeLaListe__item li {
-  list-style: none;
+button {
+  background: none;
+  border: none;
+}
+
+.iconeSupp {
+  margin-top: 1.5rem;
+}
+
+.svg {
+  background-color: none;
+}
+
+/*** PAGE DE MODIFICATION/AJOUT****/
+.divMofification {
+  height: 90vh;
+}
+
+input[type=text], .selectionDate {
+  max-width: 60%;
+  padding: 2rem;
+  border-radius: 1.7rem;
+  border-left: 0.3rem solid #F8B454;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  box-shadow: 0.3rem 0 0.5rem 0 rgba(192, 115, 7, 0.25) inset;
+}
+
+.formulireModifAjout div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 4rem 2rem;
+}
+
+.selectionDate {
+  padding: 0.7rem 0 0.7rem 0.4rem;
+  border-radius: 1.3rem;
+  margin-right: 1rem;
+}
+
+.selectionDate:first-of-type {
+  width: 25%;
+}
+
+.selectionDate:nth-of-type(2) {
+  width: 10%;
+}
+
+.selectionDate:nth-of-type(3) {
+  width: 15%;
+}
+
+.conteneurBoutons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 5rem auto 0 auto;
+}
+
+input[name=btn_modifier], input[name=btn_nouveau] {
+  margin-right: 4rem;
+  width: 100%;
+}
+
+.formNouveau {
+  margin-right: 4rem;
+  width: 60%;
+}
+
+.titreNiveau2 + .conteneurRadio {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+input[name=rappel] {
+  opacity: 0;
+}
+
+label[for=oui] {
+  margin-right: 3rem;
+}
+
+.boutonRadio {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 0.2rem solid black;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.boutonRadio:hover {
+  transform: translateY(-10%) scale(1.2);
+  border-color: #C07307;
+  box-shadow: 0 0 0.4rem #C07307;
+}
+
+input[name=rappel]:checked + .boutonRadio::after {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2rem;
+  content: "🟠";
+}
+
+input[name=rappel]:checked + .boutonRadio {
+  border: 0.2rem solid #C07307;
+}
+
+input[name=rappel] + .boutonRadio:focus::after {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2rem;
+  content: "🟠";
+}
+
+input[name=rappel] + .boutonRadio:focus {
+  border-radius: 0;
+  border: 0.3rem double black;
+}
+
+.titreNiveau2 + .divEcheance {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+}
+
+input[name=ajoutSans] {
+  margin-left: 0.7rem;
+  opacity: 0;
+}
+
+.boutonCheckbox {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 0;
+  left: 17.5rem;
+  border-radius: 5%;
+  margin-right: 1rem;
+  border: 0.2rem solid black;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.boutonCheckbox:hover {
+  transform: translateY(-10%) scale(1.2);
+  border-color: #C07307;
+  box-shadow: 0 0 0.4rem #C07307;
+}
+
+input[name=ajoutSans]:checked + .boutonCheckbox::after {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2rem;
+  content: "✓";
+}
+
+input[name=ajoutSans]:checked + .boutonCheckbox {
+  border: 0.2rem solid #C07307;
+}
+
+input[name=ajoutSans] + .boutonCheckbox:focus::after {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.2rem;
+  content: "✓";
+}
+
+input[name=ajoutSans] + .boutonCheckbox:focus {
+  border-radius: 0;
+  border: 0.3rem double black;
 }
 
 /*** PIED DE PAGE ****/
