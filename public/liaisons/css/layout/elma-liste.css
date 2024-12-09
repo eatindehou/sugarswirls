@@ -1,9 +1,9 @@
-/* Error: Undefined variable.
- *    ,
- * 38 |     @media(min-width: $desktop){
- *    |                       ^^^^^^^^
- *    '
- *   ressources/liaisons/scss/layout/elma-liste.scss 38:23  root stylesheet */
+/* Error: expected "{".
+ *     ,
+ * 224 | =======
+ *     |        ^
+ *     '
+ *   ressources/liaisons/scss/layout/elma-liste.scss 224:8  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
@@ -13,5 +13,5 @@ body::before {
   padding: 1em;
   margin-bottom: 1em;
   border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a    \2577 \a 38 \2502      @media(min-width: $desktop){\a    \2502                        ^^^^^^^^\a    \2575 \a   ressources/liaisons/scss/layout/elma-liste.scss 38:23  root stylesheet";
+  content: 'Error: expected "{".\a     \2577 \a 224 \2502  =======\a     \2502         ^\a     \2575 \a   ressources/liaisons/scss/layout/elma-liste.scss 224:8  root stylesheet';
 }

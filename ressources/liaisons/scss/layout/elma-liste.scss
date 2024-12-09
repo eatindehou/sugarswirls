@@ -98,6 +98,7 @@ outline: none;
 // MAIN CONTENU PRINCIPAL
 .mainListe {
     width: 100%;
+    padding-bottom: 7rem;
 }
 
 /*** LISTES ****/
@@ -117,7 +118,9 @@ outline: none;
 // TEXTE DE TAILLE MOYENNE
 
 // LI
-
+.itemsDeLaListe li {
+    list-style: none;
+}
 .itemsDeLaListe__item {
     position: relative;
     list-style: none;
@@ -162,7 +165,9 @@ button {
 // LIENS *** PAGE DES LIENS
 /*** PAGE DE MODIFICATION/AJOUT****/
 .divMofification {
-    height: 90vh;
+    height: 110vh;
+    padding-left: 7rem;
+
 }
 
 input[type="text"], .selectionDate {
@@ -203,7 +208,7 @@ input[type="text"], .selectionDate {
 }
 
 // BOUTONS
-.conteneurBoutons {
+.lienConsulter +.conteneurBoutons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -212,14 +217,25 @@ input[type="text"], .selectionDate {
     margin: 5rem auto 0 auto;
 }
 
-input[name="btn_modifier"],input[name="btn_nouveau"] {
+input[name="btn_modifier"],input[name="btn_nouveau"],input[name="btn_ajouter"] {
     margin-right: 4rem;
     width: 60%;
+<<<<<<< HEAD
+=======
+
+}
+input[name="btn_ajouter"] {
+    margin-top: 4rem;
+>>>>>>> 78d29f3c2d1ce1d72cc3c92439034a1c6773745c
 
 }
 .formNouveau{
-    margin-right: 4rem;
-    width: 50%;
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 // RADIO RAPPELS
@@ -257,8 +273,9 @@ label[for="oui"] {
 
 input[name="rappel"]:checked+.boutonRadio::after{
     position: absolute;
-    top:.1rem;
-    left:.2rem;
+    font-size: 1rem;
+    top:.5rem;
+    left:.3rem;
     content:"🟠";
 }
 input[name="rappel"]:checked+.boutonRadio{
