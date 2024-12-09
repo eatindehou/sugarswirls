@@ -120,9 +120,13 @@ main{
 .bloc{
   padding: 2em;
   border-radius: 12px;
-  margin: 3em 20em;
+  margin: 1em;
   margin-top: 3em auto;
   background-color: $blanc;
+
+  @media(min-width: $desktop){
+    margin: 3em 20em;
+  }
 }
 
 .couleurs{
@@ -135,6 +139,11 @@ main{
     padding-left: 2.7em;
     padding-right: .5em;
   }
+}
+
+.error{
+  color: $rouge;
+  font-size: 1.2em;
 }
 
 

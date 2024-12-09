@@ -909,9 +909,14 @@ main {
 .bloc {
   padding: 2em;
   border-radius: 12px;
-  margin: 3em 20em;
+  margin: 1em;
   margin-top: 3em auto;
   background-color: #FFF;
+}
+@media (min-width: 601px) {
+  .bloc {
+    margin: 3em 20em;
+  }
 }
 
 .couleurs {
@@ -923,6 +928,11 @@ main {
 .couleurs__nom {
   padding-left: 2.7em;
   padding-right: 0.5em;
+}
+
+.error {
+  color: #f0245e;
+  font-size: 1.2em;
 }
 
 .entete {
@@ -1168,7 +1178,7 @@ input[type=text], .selectionDate {
 
 input[name=btn_modifier], input[name=btn_nouveau] {
   margin-right: 4rem;
-  width: 100%;
+  width: 60%;
 }
 
 .formNouveau {

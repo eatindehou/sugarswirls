@@ -54,16 +54,8 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 	   
    $arrListes[$cpt]['hexadecimal'] = $strStyles;
 
-
-//    $strRequeteItems = 'SELECT count(items.id) FROM listes INNER JOIN items ON listes.id = items.liste_id WHERE listes.id ='. $ligne['id'];
-//    $pdosSousResultatItems = $objPdo->prepare($strRequeteItems);
-//    $pdosSousResultatItems->execute();
-
-//    $arrNbItems=$pdosSousResultatItems->fetch();
-
    $ligne=$pdosResultatListe->fetch();
 
-//    $arrListes[$cpt]['nbItems'] = $arrNbItems[0];
 	}
 
     $pdosResultatListe ->closecursor();
@@ -112,8 +104,7 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 	<meta name="author" content="">
-	<meta charset="utf-8">
-	<title>Un beau titre ici!</title>
+	<title>Gestion de listes</title>
 	<?php include ("liaisons/fragments/headlinks.inc.php");?>
 </head>
 
@@ -156,19 +147,16 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 
 		<h2 class="accueil__titre">Éléments à échéance</h2>
 		<?php for($cpt=0;$cpt<count($arrItems);$cpt++){?>
+			<ul>
 			<li class="item">
 				<h3 class="item__titre"><?php echo $arrItems[$cpt]["nom"];?></h3>
-				<style>
-					.item__titre{
-					background-color: <?php echo $arrItems[$cpt]["hexadecimal"];?>;
-					}
-				</style>
 				<div class="echeance">
 					<p><?php echo $arrItems[$cpt]["echeance"];?></p>
 					<a href=""><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a>
 					<a href=""><img src="<?php echo $niveau;?>liaisons/svg/poubelle.svg" alt=""></a>
 				</div>
 			</li>
+			</ul>
 		<?php } ?>
 		<h2 class="accueil__titre">Mes listes</h2>
 
@@ -176,16 +164,13 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 
 		<ul class="listes">
 		<?php for($cpt=0;$cpt<count($arrListes);$cpt++){?>
-			<a class="liste__lien" href="<?php echo $niveau ?>items/index.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>">
+			
 			<li class="liste" style="border-left: 5px solid <?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;">
-			<h3 class="liste__titre" style="background-color:<?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;"><?php echo $arrListes[$cpt]["nom"];?></h3>
+			<a class="liste__lien" href="<?php echo $niveau ?>items/index.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><h3 class="liste__titre" style="background-color:<?php echo "#". $arrListes[$cpt]["hexadecimal"];?>;"><?php echo $arrListes[$cpt]["nom"];?></h3></a>
 			<a href="<?php echo $niveau ?>listes/modifier.php?id_liste=<?php echo $arrListes[$cpt]["id"]; ?>"><img src="<?php echo $niveau;?>liaisons/svg/crayon.svg" alt=""></a><br><br>
-			<form method="GET">
 			<input type="hidden" name="id_liste" value="<?php echo $arrListes[$cpt]["id"]; ?>">
 			<input type="submit" class="annuler" name="btn_suppression" value="Supprimer">
-			</form>
 			</li>
-			</a>
 		<?php } ?>
 		</ul>
 		</form>
