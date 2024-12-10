@@ -1,4 +1,27 @@
-// Jade
+/**
+* @author Jade Mayrand - 1942810@csfoy.ca
+*/
+
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - LISTES
+ * ----------------------------
+ * STYLE GENERAL 
+ * ASIDE
+ * BARRE RECHERCHE
+ * ECHEANCE
+ * LISTE DE LISTES
+ * AJOUTER/MODIFIER
+ * MESSAGE ERREUR
+*/
+
+
+
+
+// STYLE GENERAL
+main{
+  background-color: $background;
+}
 
 .accueil{
 
@@ -12,17 +35,7 @@
 
 }
 
-@media(min-width: $desktop){
-  .echeance{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 300px;
-    align-items: center;
-  }
-}
-
-
+// ASIDE
 .intro{
   text-align: center;
   margin: 3em;
@@ -49,55 +62,7 @@
   }
 }
 
-
-.listes{
-  padding: 2em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.liste{
-width: 200px;
-@include block;
-
-&__titre{
-  @include titre;
-}
-
-&__lien{
-color: $blanc;
-text-decoration: none;
-text-shadow: 
-                 1px -1px 0 #444,
-                  1px 1px 0 #444;
-}
-
-&__lien:hover{
-text-decoration: underline;
-  }
-
-}
-
-.item{
-  @include block;
-  width: 300px;
-  text-align: center;
-  margin: 1em auto;
-
-  @media(min-width: $desktop){
-    width: 700px;
-  }
-
-  &__titre{
-    @include titre;
-  }
-}
-
-main{
-  background-color: $background;
-}
-
+// BARRE RECHERCHE
 .recherche{
   margin-top: 1em;
   background-color: none;
@@ -117,6 +82,63 @@ main{
   }
 }
 
+// ECHEANCE
+.item{
+  @include block;
+  width: 300px;
+  text-align: center;
+  margin: 1em auto;
+
+  @media(min-width: $desktop){
+    width: 700px;
+  }
+
+  &__titre{
+    @include titre;
+  }
+}
+
+@media(min-width: $desktop){
+  .echeance{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+  }
+}
+
+// LISTE DE LISTES
+.listes{
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.liste{
+width: 200px;
+@include block;
+
+&__titre{
+  @include titre;
+}
+
+&__lien{
+color: $blanc;
+text-decoration: none;
+text-shadow: 
+                 1px -1px 0 #666,
+                  1px 1px 0 #666;
+}
+
+&__lien:hover{
+text-decoration: underline;
+  }
+
+}
+
+// AJOUTER/MODIFIER
 .bloc{
   padding: 2em;
   border-radius: 12px;
@@ -141,6 +163,7 @@ main{
   }
 }
 
+// MESSAGE ERREUR
 .error{
   color: $rouge;
   font-size: 1.2em;

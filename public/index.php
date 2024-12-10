@@ -101,9 +101,9 @@ $strRequete = "SELECT id, nom, couleur_id FROM listes ORDER BY nom";
 } ?>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="keyword" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Vous retrouverez ici toutes vos listes avec les items à échéance. Il est ainsi très facile de les modifier, de les supprimer et d'en ajouter des nouvelles.">
+	<meta name="keyword" content="listes, items, supprimer, ajouter, modifier, thèmes, échéance">
+	<meta name="author" content="Jade Mayrand">
 	<title>Gestion de listes</title>
 	<?php include ("liaisons/fragments/headlinks.inc.php");?>
 </head>

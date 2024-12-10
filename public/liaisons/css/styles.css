@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /**
- * @author Prenom Nom <courriel>
- * @todo Lier les modules avec des instructions @import
- */
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
+*/
 /*
  * ------------------
  * TABLE DES MATIERES
@@ -26,7 +26,8 @@
 /**** UTILITAIRES ****************************/
 /** Variables **/
 /**
-* @author Prenom Nom courriel
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 /** Polices de caractères **/
 /** Palette de couleurs **/
@@ -35,8 +36,8 @@
 /** Points de rupture **/
 /** Mixins **/
 /**
-* @author Ève Février - efevrier@cegep-ste-foy.qc.ca
-* @author Yves Hélie - yves.helie@cegep-ste-foy.qc.ca
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 /**
  * ----------------------------
@@ -206,8 +207,8 @@ label[for=nom_item] {
 
 /** Hyperliens **/
 /**
-* @author Prenom Nom courriel
-* @todo Compléter selon l'énoncé de l'exercice
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 .hyperlien {
   position: relative;
@@ -311,7 +312,8 @@ label[for=nom_item] {
 
 /** Boutons **/
 /**
-* @author Prenom Nom courriel
+* @author Elma Atindehou - 2233755@csfoy.ca
+* @author Jade Mayrand - 1942810@csfoy.ca
 */
 .bouton {
   text-decoration: none;
@@ -422,6 +424,25 @@ label[for=nom_item] {
 }
 /****** MODULES *****************************/
 /****** LAYOUT *****************************/
+/**
+* @author Jade Mayrand - 1942810@csfoy.ca
+*/
+/**
+ * ----------------------------
+ * TABLE DES MATIERES - LISTES
+ * ----------------------------
+ * STYLE GENERAL 
+ * ASIDE
+ * BARRE RECHERCHE
+ * ECHEANCE
+ * LISTE DE LISTES
+ * AJOUTER/MODIFIER
+ * MESSAGE ERREUR
+*/
+main {
+  background-color: rgba(248, 180, 84, 0.5);
+}
+
 .accueil__titre {
   padding: 20px;
 }
@@ -430,15 +451,6 @@ label[for=nom_item] {
   flex-direction: row;
 }
 
-@media (min-width: 601px) {
-  .echeance {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 300px;
-    align-items: center;
-  }
-}
 .intro {
   text-align: center;
   margin: 3em;
@@ -463,32 +475,20 @@ label[for=nom_item] {
   }
 }
 
-.listes {
-  padding: 2em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.recherche {
+  margin-top: 1em;
+  background-color: none;
+  border: solid 2px #F8B454;
+  border-radius: 12px;
+  max-width: 250px;
 }
-
-.liste {
-  width: 200px;
-  list-style-type: none;
-  padding: 1.5em;
-  margin: 1em;
-  border-radius: 20px;
+.recherche input {
+  border: none;
+}
+.recherche button {
+  border: none;
   background-color: #FFF;
-}
-.liste__titre {
-  padding: 0.5em;
-  border-radius: 9px;
-}
-.liste__lien {
-  color: #FFF;
-  text-decoration: none;
-  text-shadow: 1px -1px 0 #444, 1px 1px 0 #444;
-}
-.liste__lien:hover {
-  text-decoration: underline;
+  margin-left: 1em;
 }
 
 .item {
@@ -511,24 +511,41 @@ label[for=nom_item] {
   border-radius: 9px;
 }
 
-main {
-  background-color: rgba(248, 180, 84, 0.5);
+@media (min-width: 601px) {
+  .echeance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+  }
+}
+.listes {
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.recherche {
-  margin-top: 1em;
-  background-color: none;
-  border: solid 2px #F8B454;
-  border-radius: 12px;
-  max-width: 250px;
-}
-.recherche input {
-  border: none;
-}
-.recherche button {
-  border: none;
+.liste {
+  width: 200px;
+  list-style-type: none;
+  padding: 1.5em;
+  margin: 1em;
+  border-radius: 20px;
   background-color: #FFF;
-  margin-left: 1em;
+}
+.liste__titre {
+  padding: 0.5em;
+  border-radius: 9px;
+}
+.liste__lien {
+  color: #FFF;
+  text-decoration: none;
+  text-shadow: 1px -1px 0 #666, 1px 1px 0 #666;
+}
+.liste__lien:hover {
+  text-decoration: underline;
 }
 
 .bloc {
@@ -560,6 +577,9 @@ main {
   font-size: 1.2em;
 }
 
+/**
+* @author Jade Mayrand - 1942810@csfoy.ca
+*/
 .entete {
   background-color: #FFF;
   padding-top: 3em;
@@ -590,6 +610,9 @@ main {
   }
 }
 
+/**
+* @author Jade Mayrand - 1942810@csfoy.ca
+*/
 .piedDePage {
   background-color: #FFF;
   text-align: center;
